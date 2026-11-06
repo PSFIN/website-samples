@@ -1,0 +1,593 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+<title>Brisa Floor Care</title>
+<meta name="claude:viewport-fit-sides" content="cover">
+<meta name="description" content="Demo website for a fictional South Florida carpet and tile cleaning company.">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Bricolage+Grotesque:opsz,wght@12..96,500;12..96,700;12..96,800&family=Figtree:wght@400;500;600;700&display=swap">
+<style>
+/* Layout: airy single column, hero split with a live before/after slider, pool-tile aqua on cool white, lemon used once for the offer */
+:root{
+  --ink:#0f2a3f; --ink-soft:#4a6274; --bg:#f5fafb; --surface:#ffffff; --line:#d7e7ea;
+  --aqua:#0f9d94; --aqua-deep:#0b7770; --aqua-wash:#e1f4f2; --lemon:#ffd84d;
+  --display:"Bricolage Grotesque", "Avenir Next", system-ui, sans-serif;
+  --body:"Figtree", "Segoe UI", system-ui, sans-serif;
+  --r:14px; color-scheme:light;
+}
+*{box-sizing:border-box}
+[hidden]{display:none!important}
+html{scroll-behavior:smooth}
+@media (prefers-reduced-motion:reduce){html{scroll-behavior:auto}*{transition:none!important;animation:none!important}}
+body{margin:0;background:var(--bg);color:var(--ink);font:16px/1.6 var(--body);-webkit-font-smoothing:antialiased;padding-bottom:76px}
+@media (min-width:860px){body{padding-bottom:0}}
+img,svg{max-width:100%}
+a{color:inherit}
+h1,h2,h3{font-family:var(--display);line-height:1.08;margin:0;text-wrap:balance;letter-spacing:-.02em}
+h2{font-size:clamp(1.9rem,4.2vw,2.8rem);font-weight:800}
+h3{font-size:1.2rem;font-weight:700;letter-spacing:-.01em}
+p{margin:0}
+.wrap{max-width:1140px;margin:0 auto;padding-left:max(16px,env(safe-area-inset-left,0px));padding-right:max(16px,env(safe-area-inset-right,0px))}
+section{padding-block:clamp(56px,8vw,96px)}
+.eyebrow{font-size:.78rem;font-weight:700;letter-spacing:.12em;text-transform:uppercase;color:var(--aqua-deep)}
+.lede{color:var(--ink-soft);font-size:1.08rem;max-width:58ch}
+.sec-head{display:grid;gap:12px;margin-bottom:36px}
+:focus-visible{outline:3px solid var(--aqua);outline-offset:3px;border-radius:6px}
+
+/* demo ribbon */
+.demo{background:var(--ink);color:#dff3f1;font-size:.82rem;text-align:center}
+.demo .wrap{padding-block:7px}
+.demo b{color:var(--lemon);font-weight:600}
+
+/* header */
+body::before{content:"";position:fixed;inset:0 0 auto;height:env(safe-area-inset-top,0px);z-index:10;background:var(--surface)}
+header.top{position:sticky;top:env(safe-area-inset-top,0px);z-index:20;background:rgba(255,255,255,.94);backdrop-filter:blur(8px);border-bottom:1px solid var(--line)}
+header.top .wrap{display:flex;align-items:center;gap:16px;padding-block:12px}
+.logo{display:flex;align-items:center;gap:10px;text-decoration:none;font-family:var(--display);font-weight:800;font-size:1.25rem;letter-spacing:-.02em}
+.logo small{display:block;font-family:var(--body);font-weight:500;font-size:.72rem;letter-spacing:.06em;text-transform:uppercase;color:var(--ink-soft);margin-top:-2px}
+nav.main{display:none;gap:22px;margin-left:auto;font-weight:500;font-size:.95rem}
+nav.main a{text-decoration:none;color:var(--ink-soft)}
+nav.main a:hover{color:var(--ink)}
+@media (min-width:960px){nav.main{display:flex}}
+.lang{display:inline-flex;border:1px solid var(--line);border-radius:999px;padding:3px;margin-left:auto;background:var(--surface)}
+@media (min-width:960px){.lang{margin-left:0}}
+.lang button{border:0;background:none;font:600 .8rem var(--body);padding:5px 10px;border-radius:999px;cursor:pointer;color:var(--ink-soft)}
+.lang button[aria-pressed="true"]{background:var(--ink);color:#fff}
+.btn{display:inline-flex;align-items:center;justify-content:center;gap:8px;border-radius:999px;padding:13px 22px;font:700 1rem var(--body);text-decoration:none;border:2px solid transparent;cursor:pointer;transition:transform .15s,background .15s}
+.btn:hover{transform:translateY(-1px)}
+.btn-primary{background:var(--aqua);color:#fff}
+.btn-primary:hover{background:var(--aqua-deep)}
+.btn-ghost{border-color:var(--ink);color:var(--ink);background:transparent}
+.btn-wa{background:#1f9d55;color:#fff}
+.hdr-call{display:none}
+@media (min-width:640px){.hdr-call{display:inline-flex;padding:9px 16px;font-size:.92rem}}
+
+/* hero */
+.hero{position:relative;overflow:hidden;color:#fff;padding-block:clamp(40px,6vw,80px) clamp(60px,8vw,104px);background:radial-gradient(900px 520px at 88% 0%,rgba(15,157,148,.6),transparent 62%),radial-gradient(700px 420px at 0% 100%,rgba(255,216,77,.18),transparent 60%),linear-gradient(180deg,#0b2031,#0f2a3f)}
+.hero .wrap{display:grid;gap:40px;align-items:center}
+@media (min-width:900px){.hero .wrap{grid-template-columns:1.05fr 1fr}}
+.hero h1{font-size:clamp(2.4rem,6.4vw,4.2rem);font-weight:800}
+.hero h1 em{font-style:normal;background:linear-gradient(90deg,#3fe0d3,#ffd84d 50%,#3fe0d3);background-size:200% auto;-webkit-background-clip:text;background-clip:text;color:transparent;animation:shine 5s linear infinite}
+.hero .lede{margin-top:18px}
+.cta-row{display:flex;flex-wrap:wrap;gap:12px;margin-top:28px}
+.chips{display:flex;flex-wrap:wrap;gap:8px 18px;margin-top:28px;padding:0;list-style:none;font-size:.92rem;color:var(--ink-soft)}
+.chips li{display:flex;align-items:center;gap:7px}
+.chips svg{flex:none;color:var(--aqua)}
+.phone-line{margin-top:18px;font-size:.92rem;color:var(--ink-soft)}
+.phone-line strong{color:var(--ink);font-size:1.05rem;user-select:all}
+
+/* before/after slider */
+.ba{position:relative;border-radius:var(--r);overflow:hidden;aspect-ratio:4/3;max-width:100%;box-shadow:0 24px 48px -24px rgba(15,42,63,.45);background:#ccc;user-select:none}
+.ba .layer{position:absolute;inset:0}
+.ba .after{clip-path:inset(0 0 0 var(--pos,50%))}
+.ba .divider{position:absolute;top:0;bottom:0;left:var(--pos,50%);width:3px;background:#fff;transform:translateX(-50%);pointer-events:none}
+.ba .divider::after{content:"";position:absolute;top:50%;left:50%;width:42px;height:42px;border-radius:50%;background:#fff;transform:translate(-50%,-50%);box-shadow:0 4px 14px rgba(0,0,0,.25);background-image:url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 24 24' fill='none' stroke='%230f2a3f' stroke-width='2.4' stroke-linecap='round' stroke-linejoin='round'%3E%3Cpath d='M9 6l-5 6 5 6M15 6l5 6-5 6'/%3E%3C/svg%3E");background-size:22px;background-repeat:no-repeat;background-position:center}
+.ba input{position:absolute;inset:0;width:100%;height:100%;opacity:0;cursor:ew-resize;margin:0}
+.ba .tag{position:absolute;top:12px;padding:4px 10px;border-radius:999px;font-size:.72rem;font-weight:700;letter-spacing:.08em;text-transform:uppercase;background:rgba(15,42,63,.78);color:#fff;pointer-events:none}
+.ba .tag.l{left:12px}.ba .tag.r{right:12px;background:var(--aqua)}
+.ba-caption{display:flex;justify-content:space-between;gap:12px;margin-top:12px;font-size:.88rem;color:var(--ink-soft)}
+
+/* CSS-drawn surfaces */
+.carpet-dirty{background:
+  radial-gradient(circle at 28% 38%,rgba(92,66,40,.55) 0 9%,transparent 10%),
+  radial-gradient(ellipse at 66% 64%,rgba(80,58,36,.5) 0 12%,transparent 13%),
+  radial-gradient(circle at 78% 24%,rgba(92,66,40,.35) 0 6%,transparent 7%),
+  radial-gradient(ellipse at 40% 80%,rgba(70,52,34,.32) 0 15%,transparent 16%),
+  repeating-linear-gradient(90deg,rgba(0,0,0,.05) 0 2px,transparent 2px 5px),
+  repeating-linear-gradient(0deg,rgba(0,0,0,.04) 0 2px,transparent 2px 6px),
+  linear-gradient(160deg,#b9a98c,#9d8c70)}
+.carpet-clean{background:
+  repeating-linear-gradient(90deg,rgba(255,255,255,.22) 0 46px,rgba(0,0,0,.035) 46px 92px),
+  repeating-linear-gradient(90deg,rgba(255,255,255,.18) 0 2px,transparent 2px 5px),
+  repeating-linear-gradient(0deg,rgba(0,0,0,.025) 0 2px,transparent 2px 6px),
+  linear-gradient(160deg,#ece6d8,#dcd3bf)}
+.tile-dirty{background:
+  radial-gradient(ellipse at 30% 60%,rgba(90,80,60,.25) 0 20%,transparent 21%),
+  linear-gradient(90deg,#5b5244 0 4px,transparent 4px) 0 0/60px 60px,
+  linear-gradient(0deg,#5b5244 0 4px,transparent 4px) 0 0/60px 60px,
+  linear-gradient(135deg,#d6cfbf,#c4bba7)}
+.tile-clean{background:
+  linear-gradient(90deg,#c9d3d6 0 4px,transparent 4px) 0 0/60px 60px,
+  linear-gradient(0deg,#c9d3d6 0 4px,transparent 4px) 0 0/60px 60px,
+  linear-gradient(135deg,#fbfbf8,#eef1ef)}
+.sofa-dirty{background:
+  radial-gradient(ellipse at 50% 45%,rgba(60,45,30,.35) 0 18%,transparent 19%),
+  radial-gradient(circle at 25% 70%,rgba(60,45,30,.28) 0 8%,transparent 9%),
+  repeating-linear-gradient(45deg,rgba(0,0,0,.05) 0 3px,transparent 3px 7px),
+  linear-gradient(180deg,#7d8a91,#6b777d)}
+.sofa-clean{background:
+  repeating-linear-gradient(45deg,rgba(255,255,255,.08) 0 3px,transparent 3px 7px),
+  linear-gradient(180deg,#9fb6c2,#8aa3b0)}
+.rug-dirty{background:
+  radial-gradient(circle at 60% 40%,rgba(70,40,20,.45) 0 10%,transparent 11%),
+  repeating-linear-gradient(45deg,#8c6b4c 0 14px,#7a5a3e 14px 28px)}
+.rug-clean{background:repeating-linear-gradient(45deg,#d9734a 0 14px,#f0c27a 14px 28px)}
+
+/* services */
+.svc-grid{display:grid;gap:16px;grid-template-columns:repeat(auto-fill,minmax(min(100%,300px),1fr))}
+.svc{background:var(--surface);border:1px solid var(--line);border-radius:var(--r);padding:24px;display:grid;gap:10px;align-content:start}
+.svc .ico{width:44px;height:44px;border-radius:12px;background:var(--aqua-wash);color:var(--aqua-deep);display:grid;place-items:center}
+.svc p{color:var(--ink-soft);font-size:.96rem}
+.svc .from{font-size:.86rem;font-weight:600;color:var(--aqua-deep)}
+
+/* steps */
+.steps{background:var(--ink);color:#e7f2f4}
+.steps .eyebrow{color:var(--lemon)}
+.steps .lede{color:#a9c1cc}
+.step-list{display:grid;gap:28px;grid-template-columns:repeat(auto-fit,minmax(min(100%,240px),1fr));margin:0;padding:0;list-style:none;counter-reset:s}
+.step-list li{counter-increment:s;display:grid;gap:8px;border-top:2px solid rgba(255,255,255,.18);padding-top:18px}
+.step-list li::before{content:"Step " counter(s);font-size:.78rem;font-weight:700;letter-spacing:.12em;text-transform:uppercase;color:var(--lemon)}
+.step-list p{color:#a9c1cc}
+
+/* gallery */
+.gal{display:grid;gap:24px;grid-template-columns:repeat(auto-fit,minmax(min(100%,300px),1fr))}
+.gal .ba{aspect-ratio:1/1}
+.gal h3{margin-top:14px}
+.gal p{color:var(--ink-soft);font-size:.94rem;margin-top:4px}
+.hint{font-size:.85rem;color:var(--ink-soft);margin-top:-20px;margin-bottom:28px}
+
+/* offer */
+.offer .wrap>div{background:var(--lemon);border-radius:var(--r);padding:clamp(24px,4vw,44px);display:grid;gap:18px;align-items:center}
+@media (min-width:820px){.offer .wrap>div{grid-template-columns:1fr auto}}
+.offer h2{font-size:clamp(1.6rem,3.6vw,2.4rem)}
+.offer p{max-width:56ch}
+.offer small{display:block;font-size:.8rem;opacity:.75;margin-top:8px}
+.offer{padding-block:0}
+
+/* reviews */
+.sample-badge{display:inline-block;font-size:.72rem;font-weight:700;letter-spacing:.08em;text-transform:uppercase;padding:4px 10px;border-radius:999px;border:1px dashed var(--ink-soft);color:var(--ink-soft);justify-self:start}
+.rev-grid{display:grid;gap:16px;grid-template-columns:repeat(auto-fit,minmax(min(100%,280px),1fr))}
+.rev{background:var(--surface);border:1px solid var(--line);border-radius:var(--r);padding:24px;display:grid;gap:14px;align-content:start;margin:0}
+.stars{color:#e3a400;letter-spacing:2px;font-size:1.05rem}
+.rev blockquote{margin:0;font-size:1rem}
+.rev figcaption{font-size:.88rem;color:var(--ink-soft)}
+.rev figcaption b{color:var(--ink)}
+
+/* area */
+.area .wrap{display:grid;gap:36px;align-items:center}
+@media (min-width:900px){.area .wrap{grid-template-columns:1fr 1.1fr}}
+.cities{display:flex;flex-wrap:wrap;gap:8px;margin:22px 0 0;padding:0;list-style:none}
+.cities li{background:var(--surface);border:1px solid var(--line);border-radius:999px;padding:6px 14px;font-size:.9rem}
+.map{position:relative;border-radius:var(--r);overflow:hidden;border:1px solid var(--line);background:#e8f1ef}
+.map svg{display:block;width:100%;height:auto}
+.map .map-note{position:absolute;left:12px;bottom:12px;right:12px;display:flex;flex-wrap:wrap;gap:8px;justify-content:space-between;align-items:center;background:rgba(255,255,255,.94);border-radius:10px;padding:10px 12px;font-size:.84rem}
+.map .map-note a{font-weight:700;color:var(--aqua-deep)}
+
+/* quote */
+.quote{background:var(--aqua-wash)}
+.quote .wrap{display:grid;gap:40px}
+@media (min-width:900px){.quote .wrap{grid-template-columns:1fr 1.2fr}}
+.contact-list{display:grid;gap:14px;margin-top:26px}
+.contact-list .row{display:flex;gap:12px;align-items:center;flex-wrap:wrap}
+.contact-list .num{font-weight:700;font-size:1.15rem;user-select:all}
+form{background:var(--surface);border-radius:var(--r);padding:clamp(20px,3.5vw,32px);display:grid;gap:16px;grid-template-columns:1fr 1fr;box-shadow:0 18px 40px -28px rgba(15,42,63,.5)}
+form .full{grid-column:1/-1}
+@media (max-width:560px){form{grid-template-columns:1fr}}
+label{display:grid;gap:6px;font-size:.88rem;font-weight:600}
+input,select,textarea{font:inherit;font-weight:400;font-size:1rem;padding:12px 14px;border:1.5px solid var(--line);border-radius:10px;background:var(--bg);color:var(--ink);width:100%;min-width:0}
+input:focus,select:focus,textarea:focus{outline:none;border-color:var(--aqua);background:#fff}
+textarea{min-height:96px;resize:vertical}
+.form-note{grid-column:1/-1;background:var(--aqua-wash);border-radius:10px;padding:12px 14px;font-size:.92rem}
+.fine{grid-column:1/-1;font-size:.8rem;color:var(--ink-soft)}
+
+footer{background:var(--ink);color:#a9c1cc;font-size:.9rem}
+footer .wrap{padding-block:36px;display:grid;gap:16px}
+@media (min-width:760px){footer .wrap{grid-template-columns:1fr auto;align-items:end}}
+footer .logo{color:#fff}
+footer .logo small{color:#a9c1cc}
+
+/* sticky mobile action bar */
+.mbar{position:fixed;left:0;right:0;bottom:0;z-index:30;display:grid;grid-template-columns:1fr 1fr;gap:10px;background:rgba(255,255,255,.97);border-top:1px solid var(--line);padding-top:10px;padding-bottom:calc(10px + env(safe-area-inset-bottom,0px));padding-left:max(12px,env(safe-area-inset-left,0px));padding-right:max(12px,env(safe-area-inset-right,0px))}
+.mbar .btn{padding:12px 10px;font-size:.95rem}
+@media (min-width:860px){.mbar{display:none}}
+
+/* ---- motion layer ---- */
+@keyframes rise{from{opacity:0;transform:translateY(34px)}to{opacity:1;transform:none}}
+@keyframes marq{to{transform:translateX(-50%)}}
+@keyframes grow{to{transform:scaleX(1)}}
+@keyframes pulse{0%{box-shadow:0 0 0 0 var(--pulse,rgba(31,157,85,.5))}70%{box-shadow:0 0 0 16px transparent}100%{box-shadow:0 0 0 0 transparent}}
+@keyframes shine{to{background-position:200% center}}
+.progress{position:fixed;left:0;right:0;top:env(safe-area-inset-top,0px);height:3px;background:linear-gradient(90deg,#0f9d94,#ffd84d);transform-origin:0 50%;transform:scaleX(0);z-index:60;pointer-events:none}
+@supports (animation-timeline:scroll()){.progress{animation:grow linear both;animation-timeline:scroll(root)}}
+@supports not (animation-timeline:scroll()){.progress{display:none}}
+.btn{position:relative;overflow:hidden;isolation:isolate}
+.btn::after{content:"";position:absolute;inset:0;background:linear-gradient(115deg,transparent 30%,rgba(255,255,255,.45) 50%,transparent 70%);transform:translateX(-130%);transition:transform .7s;z-index:-1;pointer-events:none}
+.btn:hover::after{transform:translateX(130%)}
+.marquee{overflow:hidden;white-space:nowrap;display:flex}
+.marquee .track{display:flex;flex:none;align-items:center;animation:marq 30s linear infinite}
+.marquee:hover .track{animation-play-state:paused}
+.mbar .btn-wa{--pulse:rgba(31,157,85,.55);animation:pulse 2.4s 2s infinite}
+@supports (animation-timeline:view()){
+  .sec-head,.svc,.step-list li,.gal>div,.rev,.stat,.area .map,.quote form,.cities li{animation:rise linear both;animation-timeline:view();animation-range:entry 0% entry 70%}
+}
+
+.hero .wrap{position:relative;z-index:1}
+.hero .lede,.hero .phone-line,.hero .ba-caption{color:#b9d4dc}
+.hero .phone-line strong{color:#fff}
+.hero .eyebrow{color:var(--lemon)}
+.hero .chips{color:#cfe3e8}.hero .chips svg{color:#3fe0d3}
+.hero .wrap>div:first-child>*{animation:rise .9s cubic-bezier(.2,.7,.2,1) both}
+.hero .wrap>div:first-child>:nth-child(2){animation-delay:.08s}
+.hero .wrap>div:first-child>:nth-child(3){animation-delay:.16s}
+.hero .wrap>div:first-child>:nth-child(4){animation-delay:.24s}
+.hero .wrap>div:first-child>:nth-child(5){animation-delay:.32s}
+.hero .wrap>div:first-child>:nth-child(6){animation-delay:.4s}
+.hero .wrap>div:last-child{animation:rise 1s .25s cubic-bezier(.2,.7,.2,1) both}
+.hero .ba{box-shadow:0 30px 80px -20px rgba(0,0,0,.65),0 0 0 6px rgba(255,255,255,.08)}
+.hero .btn-primary{--pulse:rgba(63,224,211,.6);animation:pulse 2.2s 1.4s infinite}
+.bubbles{position:absolute;inset:0;pointer-events:none;z-index:0}
+.bubbles span{position:absolute;bottom:-90px;border-radius:50%;background:radial-gradient(circle at 32% 30%,rgba(255,255,255,.85),rgba(255,255,255,.12) 38%,rgba(120,230,220,.08) 70%);border:1px solid rgba(255,255,255,.3);animation:bubble linear infinite}
+@keyframes bubble{0%{transform:translate(0,0)}50%{transform:translate(26px,-420px)}100%{transform:translate(-14px,-840px);opacity:0}}
+.spark{position:absolute;width:20px;height:20px;background:#fff;clip-path:polygon(50% 0,61% 39%,100% 50%,61% 61%,50% 100%,39% 61%,0 50%,39% 39%);animation:twinkle 1.8s ease-in-out infinite;filter:drop-shadow(0 0 6px #fff)}
+@keyframes twinkle{0%,100%{transform:scale(.3) rotate(0);opacity:.25}50%{transform:scale(1) rotate(90deg);opacity:1}}
+.marquee.band{background:var(--lemon);color:var(--ink);font-family:var(--display);font-weight:800;font-size:clamp(1.3rem,3vw,2rem);padding-block:14px;letter-spacing:-.01em}
+.marquee .track span{padding-inline:22px}
+.marquee .track i{font-style:normal;color:var(--aqua-deep)}
+.stats .wrap{display:grid;gap:22px;grid-template-columns:repeat(2,minmax(0,1fr))}
+@media (min-width:820px){.stats .wrap{grid-template-columns:repeat(4,minmax(0,1fr))}}
+.stat b{display:block;font-family:var(--display);font-weight:800;font-size:clamp(2.2rem,5vw,3.3rem);line-height:1.05;color:var(--aqua-deep);font-variant-numeric:tabular-nums;letter-spacing:-.03em}
+.stat>span{color:var(--ink-soft);font-size:.95rem}
+.stats-note{grid-column:1/-1;font-size:.8rem;color:var(--ink-soft)}
+.svc{transition:translate .35s cubic-bezier(.2,.7,.2,1),box-shadow .35s,border-color .35s}
+.svc:hover{translate:0 -8px;box-shadow:0 26px 44px -24px rgba(15,42,63,.45);border-color:var(--aqua)}
+.svc .ico{transition:rotate .5s,scale .5s,background .3s,color .3s}
+.svc:hover .ico{rotate:-10deg;scale:1.15;background:var(--aqua);color:#fff}
+.rev{transition:translate .35s,rotate .35s,box-shadow .35s}.rev:hover{translate:0 -6px;rotate:-.6deg;box-shadow:0 20px 40px -26px rgba(15,42,63,.5)}
+.gal .ba{transition:scale .4s}.gal>div:hover .ba{scale:1.02}
+.offer .wrap>div{background:linear-gradient(110deg,#ffd84d,#fff0a8,#ffd84d);background-size:200% 100%;animation:shine 6s linear infinite}
+.cities li{transition:background .2s,color .2s}.cities li:hover{background:var(--aqua);color:#fff}
+</style>
+</head>
+<body>
+<div class="progress" aria-hidden="true"></div>
+
+<div class="demo"><div class="wrap"><b data-es="Sitio de muestra">Sample website</b> · <span data-es="Negocio ficticio creado para mostrar cómo podría verse su sitio web.">Fictional business, built to show what your website could look like.</span></div></div>
+
+<header class="top">
+  <div class="wrap">
+    <a class="logo" href="#top" aria-label="Brisa Floor Care home">
+      <svg width="38" height="38" viewBox="0 0 40 40" aria-hidden="true"><rect width="40" height="40" rx="11" fill="#0f9d94"/><path d="M8 25c4-4 8-4 12 0s8 4 12 0" stroke="#fff" stroke-width="3" fill="none" stroke-linecap="round"/><path d="M8 17c4-4 8-4 12 0s8 4 12 0" stroke="#ffd84d" stroke-width="3" fill="none" stroke-linecap="round"/></svg>
+      <span>Brisa<small data-es="Limpieza de pisos">Floor Care</small></span>
+    </a>
+    <nav class="main" aria-label="Main">
+      <a href="#services" data-es="Servicios">Services</a>
+      <a href="#results" data-es="Resultados">Results</a>
+      <a href="#reviews" data-es="Reseñas">Reviews</a>
+      <a href="#area" data-es="Zona de servicio">Service area</a>
+    </nav>
+    <div class="lang" role="group" aria-label="Language">
+      <button type="button" data-lang="en" aria-pressed="true">EN</button>
+      <button type="button" data-lang="es" aria-pressed="false">ES</button>
+    </div>
+    <a class="btn btn-primary hdr-call" href="#quote" data-es="Cotización gratis">Free quote</a>
+  </div>
+</header>
+
+<main id="top">
+<section class="hero">
+  <div class="bubbles" aria-hidden="true"><span style="left:30%;width:20px;height:20px;animation-duration:13.2s;animation-delay:-5.0s"></span><span style="left:24%;width:28px;height:28px;animation-duration:15.6s;animation-delay:-3.7s"></span><span style="left:5%;width:14px;height:14px;animation-duration:15.6s;animation-delay:-11.3s"></span><span style="left:36%;width:70px;height:70px;animation-duration:10.5s;animation-delay:-4.3s"></span><span style="left:82%;width:38px;height:38px;animation-duration:15.9s;animation-delay:-13.5s"></span><span style="left:49%;width:38px;height:38px;animation-duration:9.7s;animation-delay:-8.5s"></span><span style="left:87%;width:20px;height:20px;animation-duration:12.1s;animation-delay:-3.5s"></span><span style="left:33%;width:14px;height:14px;animation-duration:12.8s;animation-delay:-1.3s"></span><span style="left:72%;width:14px;height:14px;animation-duration:15.7s;animation-delay:-0.1s"></span><span style="left:39%;width:14px;height:14px;animation-duration:13.6s;animation-delay:-12.4s"></span><span style="left:67%;width:38px;height:38px;animation-duration:10.6s;animation-delay:-5.9s"></span><span style="left:38%;width:52px;height:52px;animation-duration:12.4s;animation-delay:-2.3s"></span><span style="left:41%;width:28px;height:28px;animation-duration:11.1s;animation-delay:-11.2s"></span><span style="left:12%;width:14px;height:14px;animation-duration:9.4s;animation-delay:-8.8s"></span></div>
+  <div class="wrap">
+    <div>
+      <p class="eyebrow" data-es="Miami-Dade · Broward · Palm Beach">Miami-Dade · Broward · Palm Beach</p>
+      <h1 style="margin-top:12px"><span data-es="Alfombras como nuevas.">Carpets that look new.</span> <em data-es="Losas que brillan.">Tile that shines.</em></h1>
+      <p class="lede" data-es="Limpieza profunda con vapor para alfombras, losas, juntas y muebles. Productos seguros para niños y mascotas, y citas la misma semana en todo el sur de la Florida.">Hot-water extraction for carpet, tile, grout and upholstery. Kid- and pet-safe solutions, with same-week appointments across South Florida.</p>
+      <div class="cta-row">
+        <a class="btn btn-primary" href="#quote" data-es="Pida su cotización gratis">Get my free quote</a>
+        <a class="btn btn-wa" href="https://wa.me/13055550142" target="_blank" rel="noopener">
+          <svg width="18" height="18" viewBox="0 0 24 24" fill="currentColor" aria-hidden="true"><path d="M12 2a10 10 0 0 0-8.6 15.1L2 22l5-1.3A10 10 0 1 0 12 2zm0 18.2a8.2 8.2 0 0 1-4.2-1.2l-.3-.2-3 .8.8-2.9-.2-.3A8.2 8.2 0 1 1 12 20.2zm4.5-6.1c-.2-.1-1.5-.7-1.7-.8s-.4-.1-.6.1-.7.8-.8 1-.3.2-.5.1a6.7 6.7 0 0 1-3.3-2.9c-.3-.4.3-.4.7-1.3.1-.2 0-.3 0-.4l-.8-1.8c-.2-.5-.4-.4-.6-.4h-.5a1 1 0 0 0-.7.3 3 3 0 0 0-.9 2.2 5.2 5.2 0 0 0 1.1 2.7 11.8 11.8 0 0 0 4.5 4c1.7.7 2.3.8 3.2.6a2.7 2.7 0 0 0 1.8-1.3 2.2 2.2 0 0 0 .2-1.3c-.1-.1-.3-.2-.5-.3z"/></svg>
+          WhatsApp
+        </a>
+      </div>
+      <p class="phone-line"><span data-es="O llame:">Or call:</span> <strong>(305) 555-0142</strong></p>
+      <ul class="chips">
+        <li><svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.4" aria-hidden="true"><path d="M5 12l5 5L20 7"/></svg><span data-es="Con licencia y seguro">Licensed &amp; insured</span></li>
+        <li><svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.4" aria-hidden="true"><path d="M5 12l5 5L20 7"/></svg><span data-es="Seguro para mascotas">Pet-safe products</span></li>
+        <li><svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.4" aria-hidden="true"><path d="M5 12l5 5L20 7"/></svg><span data-es="Seco en 4–6 horas">Dry in 4–6 hours</span></li>
+      </ul>
+    </div>
+    <div>
+      <div class="ba" style="--pos:50%">
+        <div class="layer carpet-dirty"></div>
+        <div class="layer after carpet-clean"><span class="spark" style="left:66%;top:20%"></span><span class="spark" style="left:84%;top:56%;animation-delay:.6s"></span><span class="spark" style="left:60%;top:76%;animation-delay:1.1s"></span></div>
+        <span class="tag l" data-es="Antes">Before</span><span class="tag r" data-es="Después">After</span>
+        <div class="divider"></div>
+        <input type="range" min="0" max="100" value="50" aria-label="Before and after comparison slider" id="ba-hero">
+      </div>
+      <div class="ba-caption"><span data-es="Sala en Kendall · alfombra beige, 3 años sin limpiar">Kendall living room · beige carpet, 3 years since last clean</span><span data-es="Deslice ↔">Drag ↔</span></div>
+    </div>
+  </div>
+</section>
+
+<div class="marquee band" aria-hidden="true"><div class="track"><span data-es="Alfombras">Carpet</span><i>✦</i><span data-es="Losas y juntas">Tile &amp; grout</span><i>✦</i><span data-es="Sofás y muebles">Upholstery</span><i>✦</i><span data-es="Olor de mascotas">Pet odor</span><i>✦</i><span data-es="Alfombras de área">Area rugs</span><i>✦</i><span data-es="Daños por agua 24/7">Water damage 24/7</span><i>✦</i><span data-es="Alfombras">Carpet</span><i>✦</i><span data-es="Losas y juntas">Tile &amp; grout</span><i>✦</i><span data-es="Sofás y muebles">Upholstery</span><i>✦</i><span data-es="Olor de mascotas">Pet odor</span><i>✦</i><span data-es="Alfombras de área">Area rugs</span><i>✦</i><span data-es="Daños por agua 24/7">Water damage 24/7</span><i>✦</i></div></div>
+
+<section class="stats" style="padding-block:clamp(40px,6vw,64px)">
+  <div class="wrap">
+    <div class="stat"><b><span data-count="4800">4,800</span>+</b><span data-es="hogares limpiados">homes cleaned</span></div>
+    <div class="stat"><b><span data-count="4.9" data-dec="1">4.9</span>★</b><span data-es="calificación promedio">average rating</span></div>
+    <div class="stat"><b><span data-count="60">60</span> min</b><span data-es="para recibir su cotización">to get your quote</span></div>
+    <div class="stat"><b>24/7</b><span data-es="emergencias por agua">water emergencies</span></div>
+    <p class="stats-note" data-es="Cifras de ejemplo para este sitio de muestra.">Example figures for this sample site.</p>
+  </div>
+</section>
+
+<section id="services" style="padding-top:0">
+  <div class="wrap">
+    <div class="sec-head">
+      <p class="eyebrow" data-es="Lo que hacemos">What we clean</p>
+      <h2 data-es="Un equipo para cada piso de su casa">One crew for every floor in the house</h2>
+    </div>
+    <div class="svc-grid">
+      <article class="svc">
+        <div class="ico"><svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" aria-hidden="true"><rect x="3" y="6" width="18" height="12" rx="2"/><path d="M3 10h18M3 14h18"/></svg></div>
+        <h3 data-es="Limpieza de alfombras">Carpet cleaning</h3>
+        <p data-es="Extracción con agua caliente que saca la arena, el polvo y los alérgenos desde la base de la fibra.">Hot-water extraction that pulls sand, dust and allergens from the base of the fibers.</p>
+        <span class="from" data-es="Desde $39 por habitación">From $39 per room</span>
+      </article>
+      <article class="svc">
+        <div class="ico"><svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" aria-hidden="true"><rect x="3" y="3" width="18" height="18" rx="1"/><path d="M12 3v18M3 12h18"/></svg></div>
+        <h3 data-es="Losas y juntas">Tile &amp; grout</h3>
+        <p data-es="Limpieza a alta presión y sellado de juntas para porcelana, cerámica y terrazo.">High-pressure cleaning and grout sealing for porcelain, ceramic and terrazzo.</p>
+        <span class="from" data-es="Desde $0.45 por pie²">From $0.45 per sq ft</span>
+      </article>
+      <article class="svc">
+        <div class="ico"><svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" aria-hidden="true"><path d="M4 18v-6a2 2 0 0 1 2-2h12a2 2 0 0 1 2 2v6M4 18h16M6 10V7a2 2 0 0 1 2-2h8a2 2 0 0 1 2 2v3"/></svg></div>
+        <h3 data-es="Muebles y sofás">Upholstery</h3>
+        <p data-es="Sofás, seccionales, sillas de comedor y colchones, con productos para cada tipo de tela.">Sofas, sectionals, dining chairs and mattresses, matched to each fabric type.</p>
+        <span class="from" data-es="Desde $89 por sofá">From $89 per sofa</span>
+      </article>
+      <article class="svc">
+        <div class="ico"><svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" aria-hidden="true"><circle cx="7" cy="8" r="2"/><circle cx="17" cy="8" r="2"/><circle cx="5" cy="14" r="2"/><circle cx="19" cy="14" r="2"/><path d="M9 19c0-2 1.3-4 3-4s3 2 3 4-6 2-6 0z"/></svg></div>
+        <h3 data-es="Olores y manchas de mascotas">Pet stains &amp; odor</h3>
+        <p data-es="Tratamiento enzimático que elimina el olor en la base de la alfombra, no solo en la superficie.">Enzyme treatment that removes odor down in the pad, not just on the surface.</p>
+        <span class="from" data-es="Desde $25 por área">From $25 per area</span>
+      </article>
+      <article class="svc">
+        <div class="ico"><svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" aria-hidden="true"><rect x="4" y="5" width="16" height="14" rx="1"/><path d="M4 9h16M4 15h16M2 5v14M22 5v14"/></svg></div>
+        <h3 data-es="Alfombras de área">Area rugs</h3>
+        <p data-es="Recogida y entrega para alfombras de lana, seda y sintéticas, lavadas a mano en nuestro taller.">Pickup and delivery for wool, silk and synthetic rugs, hand-washed in our shop.</p>
+        <span class="from" data-es="Desde $2.50 por pie²">From $2.50 per sq ft</span>
+      </article>
+      <article class="svc">
+        <div class="ico"><svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" aria-hidden="true"><path d="M12 3s6 6.5 6 11a6 6 0 0 1-12 0c0-4.5 6-11 6-11z"/></svg></div>
+        <h3 data-es="Daños por agua">Water damage</h3>
+        <p data-es="Extracción de emergencia después de tormentas y fugas, 24/7 durante la temporada de huracanes.">Emergency extraction after storms and leaks, 24/7 during hurricane season.</p>
+        <span class="from" data-es="Llame para una evaluación">Call for an assessment</span>
+      </article>
+    </div>
+  </div>
+</section>
+
+<section class="steps">
+  <div class="wrap">
+    <div class="sec-head">
+      <p class="eyebrow" data-es="Cómo funciona">How it works</p>
+      <h2 data-es="De la cotización a pisos limpios en tres pasos">From quote to clean floors in three steps</h2>
+    </div>
+    <ol class="step-list">
+      <li><h3 data-es="Envíe fotos o llámenos">Send photos or call</h3><p data-es="Mándenos fotos por WhatsApp y le damos un precio fijo en menos de una hora.">Text a few photos on WhatsApp and get a fixed price within the hour.</p></li>
+      <li><h3 data-es="Elija su horario">Pick a time</h3><p data-es="Citas de lunes a sábado, de 8 a.m. a 6 p.m. Le avisamos 30 minutos antes de llegar.">Appointments Monday to Saturday, 8 a.m. to 6 p.m. We text 30 minutes before we arrive.</p></li>
+      <li><h3 data-es="Camine descalzo esa noche">Walk barefoot tonight</h3><p data-es="Movemos los muebles livianos, limpiamos y dejamos todo seco en 4 a 6 horas.">We move light furniture, clean, and leave it dry in 4 to 6 hours.</p></li>
+    </ol>
+  </div>
+</section>
+
+<section id="results">
+  <div class="wrap">
+    <div class="sec-head">
+      <p class="eyebrow" data-es="Antes y después">Before &amp; after</p>
+      <h2 data-es="Trabajos recientes">Recent jobs</h2>
+    </div>
+    <p class="hint" data-es="Deslice cada imagen para comparar. En su sitio real usaremos fotos de sus propios trabajos.">Drag each image to compare. On your real site, these become photos of your own jobs.</p>
+    <div class="gal">
+      <div>
+        <div class="ba" style="--pos:50%"><div class="layer tile-dirty"></div><div class="layer after tile-clean"></div><span class="tag l" data-es="Antes">Before</span><span class="tag r" data-es="Después">After</span><div class="divider"></div><input type="range" min="0" max="100" value="50" aria-label="Tile before and after slider" id="ba-tile"></div>
+        <h3 data-es="Cocina en Hialeah">Hialeah kitchen</h3><p data-es="Juntas de porcelana limpiadas y selladas, 220 pie².">Porcelain grout cleaned and sealed, 220 sq ft.</p>
+      </div>
+      <div>
+        <div class="ba" style="--pos:50%"><div class="layer sofa-dirty"></div><div class="layer after sofa-clean"></div><span class="tag l" data-es="Antes">Before</span><span class="tag r" data-es="Después">After</span><div class="divider"></div><input type="range" min="0" max="100" value="50" aria-label="Sofa before and after slider" id="ba-sofa"></div>
+        <h3 data-es="Seccional en Doral">Doral sectional</h3><p data-es="Microfibra de 6 asientos, manchas de café y de mascota.">Six-seat microfiber, coffee and pet stains.</p>
+      </div>
+      <div>
+        <div class="ba" style="--pos:50%"><div class="layer rug-dirty"></div><div class="layer after rug-clean"></div><span class="tag l" data-es="Antes">Before</span><span class="tag r" data-es="Después">After</span><div class="divider"></div><input type="range" min="0" max="100" value="50" aria-label="Rug before and after slider" id="ba-rug"></div>
+        <h3 data-es="Alfombra de lana en Coral Gables">Coral Gables wool rug</h3><p data-es="Lavado a mano en taller, colores recuperados.">Hand-washed in the shop, colors restored.</p>
+      </div>
+    </div>
+  </div>
+</section>
+
+<section class="offer">
+  <div class="wrap">
+    <div>
+      <div>
+        <h2 data-es="3 habitaciones + pasillo por $119">3 rooms + hallway for $119</h2>
+        <p style="margin-top:10px" data-es="Oferta para clientes nuevos. Incluye pre-tratamiento de manchas y desodorizante.">New-customer special. Includes spot pre-treatment and deodorizer.</p>
+        <small data-es="Precio de ejemplo para este sitio de muestra.">Example pricing for this sample site.</small>
+      </div>
+      <a class="btn btn-ghost" href="#quote" data-es="Reservar esta oferta">Book this deal</a>
+    </div>
+  </div>
+</section>
+
+<section id="reviews">
+  <div class="wrap">
+    <div class="sec-head">
+      <span class="sample-badge" data-es="Reseñas de ejemplo">Sample reviews</span>
+      <h2 data-es="Lo que dicen los vecinos">What neighbors say</h2>
+      <p class="lede" data-es="Texto de ejemplo. En su sitio mostraremos sus reseñas reales de Google.">Placeholder text. Your real site will show your actual Google reviews.</p>
+    </div>
+    <div class="rev-grid">
+      <figure class="rev"><div class="stars" aria-label="5 out of 5 stars">★★★★★</div><blockquote data-es="Llegaron a la hora, movieron los muebles y la alfombra quedó como el día que nos mudamos. El olor del perro desapareció.">They showed up on time, moved the furniture, and the carpet looks like the day we moved in. The dog smell is gone.</blockquote><figcaption><b>Maria G.</b> · Kendall</figcaption></figure>
+      <figure class="rev"><div class="stars" aria-label="5 out of 5 stars">★★★★★</div><blockquote data-es="Pensaba que las juntas de mi cocina eran grises. Eran blancas. Precio justo y me lo dieron por WhatsApp en 20 minutos.">I thought my kitchen grout was gray. It was white. Fair price, and they quoted me on WhatsApp in 20 minutes.</blockquote><figcaption><b>Daniel R.</b> · Hialeah</figcaption></figure>
+      <figure class="rev"><div class="stars" aria-label="5 out of 5 stars">★★★★★</div><blockquote data-es="Limpiamos los sofás antes de alquilar el apartamento. Rápidos, amables y todo seco en la tarde.">Had our sofas done before renting out the condo. Fast, friendly, and everything was dry by the afternoon.</blockquote><figcaption><b>Ana &amp; Luis P.</b> · Brickell</figcaption></figure>
+    </div>
+  </div>
+</section>
+
+<section id="area" class="area" style="padding-top:0">
+  <div class="wrap">
+    <div>
+      <p class="eyebrow" data-es="Zona de servicio">Service area</p>
+      <h2 style="margin-top:12px" data-es="De Homestead a Boca Ratón">Homestead to Boca Raton</h2>
+      <p class="lede" style="margin-top:14px" data-es="Sin cargo de viaje dentro de Miami-Dade y Broward. Palm Beach con cita previa.">No travel fee anywhere in Miami-Dade or Broward. Palm Beach by appointment.</p>
+      <ul class="cities">
+        <li>Miami</li><li>Hialeah</li><li>Doral</li><li>Kendall</li><li>Coral Gables</li><li>Miami Beach</li><li>Homestead</li><li>Fort Lauderdale</li><li>Hollywood</li><li>Pembroke Pines</li><li>Boca Raton</li>
+      </ul>
+    </div>
+    <div class="map">
+      <svg viewBox="0 0 600 440" role="img" aria-label="Illustrated map of the South Florida service area">
+        <rect width="600" height="440" fill="#bfe3e6"/>
+        <path d="M0 0h420c-8 40-14 80-18 120s-10 90-22 140-28 90-52 130l-28 50H0z" fill="#eef4ec"/>
+        <path d="M60 0v440M180 0v440M300 0v440M0 90h400M0 210h390M0 330h340" stroke="#dbe5d8" stroke-width="2"/>
+        <path d="M250 0c-4 120-12 260-40 440" stroke="#f3d77a" stroke-width="6" fill="none"/>
+        <path d="M120 0c10 140 6 300-10 440" stroke="#ffffff" stroke-width="5" fill="none"/>
+        <path d="M402 120c-6 50-12 100-26 150" stroke="#0f9d94" stroke-width="0" fill="none"/>
+        <ellipse cx="270" cy="230" rx="170" ry="210" fill="#0f9d94" opacity=".12"/>
+        <g font-family="Figtree, system-ui, sans-serif" font-size="14" font-weight="600" fill="#0f2a3f">
+          <g transform="translate(330,52)"><circle r="6" fill="#0f2a3f"/><text x="12" y="5">Boca Raton</text></g>
+          <g transform="translate(320,120)"><circle r="6" fill="#0f2a3f"/><text x="12" y="5">Fort Lauderdale</text></g>
+          <g transform="translate(300,178)"><circle r="6" fill="#0f2a3f"/><text x="12" y="5">Hollywood</text></g>
+          <g transform="translate(170,165)"><circle r="6" fill="#0f2a3f"/><text x="-112" y="5">Pembroke Pines</text></g>
+          <g transform="translate(220,232)"><circle r="6" fill="#0f2a3f"/><text x="-66" y="5">Hialeah</text></g>
+          <g transform="translate(290,268)"><circle r="9" fill="#0f9d94" stroke="#fff" stroke-width="3"/><text x="14" y="5" font-size="16" font-weight="800">Miami</text></g>
+          <g transform="translate(176,282)"><circle r="6" fill="#0f2a3f"/><text x="-50" y="5">Doral</text></g>
+          <g transform="translate(206,340)"><circle r="6" fill="#0f2a3f"/><text x="-66" y="5">Kendall</text></g>
+          <g transform="translate(150,405)"><circle r="6" fill="#0f2a3f"/><text x="12" y="5">Homestead</text></g>
+        </g>
+        <text x="500" y="300" font-family="Figtree, system-ui, sans-serif" font-size="13" fill="#4a7f86" font-style="italic">Atlantic Ocean</text>
+      </svg>
+      <div class="map-note"><span data-es="Aquí va el mapa de Google en su sitio real">Live Google Map goes here on your real site</span><a href="https://www.google.com/maps/search/?api=1&amp;query=Miami%2C+FL" target="_blank" rel="noopener" data-es="Abrir en Google Maps">Open in Google Maps</a></div>
+    </div>
+  </div>
+</section>
+
+<section id="quote" class="quote">
+  <div class="wrap">
+    <div>
+      <p class="eyebrow" data-es="Cotización gratis">Free quote</p>
+      <h2 style="margin-top:12px" data-es="Precio fijo antes de que lleguemos">A fixed price before we arrive</h2>
+      <p class="lede" style="margin-top:14px" data-es="Cuéntenos qué necesita limpiar. Le respondemos el mismo día, en inglés o en español.">Tell us what needs cleaning. We reply the same day, in English or Spanish.</p>
+      <div class="contact-list">
+        <div class="row"><span class="num">(305) 555-0142</span><a class="btn btn-ghost" style="padding:8px 16px;font-size:.9rem" href="tel:+13055550142" data-es="Llamar">Call</a></div>
+        <div class="row"><a class="btn btn-wa" style="padding:8px 16px;font-size:.9rem" href="https://wa.me/13055550142" target="_blank" rel="noopener" data-es="Escribir por WhatsApp">Message on WhatsApp</a></div>
+        <p style="color:var(--ink-soft);font-size:.92rem" data-es="Lun–Sáb 8 a.m.–6 p.m. · Emergencias por agua 24/7">Mon–Sat 8 a.m.–6 p.m. · Water emergencies 24/7</p>
+      </div>
+    </div>
+    <form data-demo novalidate>
+      <label>
+        <span data-es="Nombre">Name</span>
+        <input id="q-name" name="name" autocomplete="name" placeholder="Maria Gonzalez">
+      </label>
+      <label>
+        <span data-es="Teléfono">Phone</span>
+        <input id="q-phone" name="phone" type="tel" autocomplete="tel" placeholder="(305) 555-0100">
+      </label>
+      <label>
+        <span data-es="Código postal">ZIP code</span>
+        <input id="q-zip" name="zip" inputmode="numeric" placeholder="33186">
+      </label>
+      <label>
+        <span data-es="Servicio">Service</span>
+        <select id="q-service" name="service">
+          <option data-es="Alfombras">Carpet</option>
+          <option data-es="Losas y juntas">Tile &amp; grout</option>
+          <option data-es="Muebles">Upholstery</option>
+          <option data-es="Alfombra de área">Area rug</option>
+          <option data-es="Daños por agua">Water damage</option>
+        </select>
+      </label>
+      <label class="full">
+        <span data-es="Detalles (habitaciones, manchas, mascotas)">Details (rooms, stains, pets)</span>
+        <textarea id="q-details" name="details" data-es-ph="Ej.: 3 habitaciones y escalera, un perro" placeholder="e.g. 3 bedrooms and stairs, one dog"></textarea>
+      </label>
+      <button class="btn btn-primary full" type="submit" data-es="Enviar solicitud">Send my request</button>
+      <p class="form-note" role="status" hidden data-es="Este es un formulario de demostración, no se envió nada. En su sitio real, las solicitudes le llegan directo a su correo o WhatsApp.">This is a demo form, so nothing was sent. On your real site, requests go straight to your email or WhatsApp.</p>
+      <p class="fine" data-es="Formulario de demostración: no guarda ni envía datos.">Demo form: no data is stored or sent.</p>
+    </form>
+  </div>
+</section>
+</main>
+
+<footer>
+  <div class="wrap">
+    <div>
+      <a class="logo" href="#top"><span>Brisa<small data-es="Limpieza de pisos">Floor Care</small></span></a>
+      <p style="margin-top:10px" data-es="Negocio ficticio. Nombre, precios, reseñas y teléfono son ejemplos.">Fictional business. Name, prices, reviews and phone number are examples.</p>
+    </div>
+    <p>© 2026 Brisa Floor Care (sample)</p>
+  </div>
+</footer>
+
+<div class="mbar">
+  <a class="btn btn-primary" href="tel:+13055550142" data-es="Llamar">Call now</a>
+  <a class="btn btn-wa" href="https://wa.me/13055550142" target="_blank" rel="noopener">WhatsApp</a>
+</div>
+
+<script>
+(function(){
+  var tx=[].slice.call(document.querySelectorAll('[data-es]'));
+  tx.forEach(function(e){e.setAttribute('data-en',e.innerHTML)});
+  var ph=[].slice.call(document.querySelectorAll('[data-es-ph]'));
+  ph.forEach(function(e){e.setAttribute('data-en-ph',e.placeholder)});
+  function setLang(l){
+    document.documentElement.lang=l;
+    tx.forEach(function(e){e.innerHTML=e.getAttribute(l==='es'?'data-es':'data-en')});
+    ph.forEach(function(e){e.placeholder=e.getAttribute(l==='es'?'data-es-ph':'data-en-ph')});
+    document.querySelectorAll('[data-lang]').forEach(function(b){b.setAttribute('aria-pressed',String(b.getAttribute('data-lang')===l))});
+    try{localStorage.setItem('demo-lang',l)}catch(err){}
+  }
+  document.querySelectorAll('[data-lang]').forEach(function(b){b.addEventListener('click',function(){setLang(b.getAttribute('data-lang'))})});
+  var saved='en';try{saved=localStorage.getItem('demo-lang')||'en'}catch(err){}
+  if(saved==='es')setLang('es');
+  document.querySelectorAll('.ba input').forEach(function(r){
+    r.addEventListener('input',function(){r.parentNode.style.setProperty('--pos',r.value+'%')});
+  });
+  document.querySelectorAll('form[data-demo]').forEach(function(f){
+    f.addEventListener('submit',function(e){e.preventDefault();var n=f.querySelector('.form-note');n.hidden=false;n.focus&&n.setAttribute('tabindex','-1');n.focus()});
+  });
+
+  var reduce=window.matchMedia&&matchMedia('(prefers-reduced-motion: reduce)').matches;
+  if(!reduce&&'IntersectionObserver' in window){
+    var cio=new IntersectionObserver(function(es){es.forEach(function(en){
+      if(!en.isIntersecting)return;cio.unobserve(en.target);
+      var el=en.target,end=parseFloat(el.getAttribute('data-count')),dec=+(el.getAttribute('data-dec')||0),t0=null;
+      function step(t){t0=t0||t;var p=Math.min((t-t0)/1500,1),v=end*(1-Math.pow(1-p,3));
+        el.textContent=v.toLocaleString('en-US',{minimumFractionDigits:dec,maximumFractionDigits:dec});if(p<1)requestAnimationFrame(step)}
+      requestAnimationFrame(step);
+    })},{threshold:.6});
+    document.querySelectorAll('[data-count]').forEach(function(e){cio.observe(e)});
+  }
+
+  var hb=document.getElementById('ba-hero');
+  if(hb&&!reduce){var seq=[[50,90,900],[90,12,1400],[12,50,900]],k=0;
+    function run(){if(k>=seq.length)return;var a=seq[k][0],b=seq[k][1],d=seq[k][2],t0=null;
+      function st(t){if(k>=seq.length)return;t0=t0||t;var q=Math.min((t-t0)/d,1),e=q<.5?2*q*q:1-Math.pow(-2*q+2,2)/2,v=a+(b-a)*e;
+        hb.value=v;hb.parentNode.style.setProperty('--pos',v+'%');if(q<1)requestAnimationFrame(st);else{k++;run()}}
+      requestAnimationFrame(st)}
+    setTimeout(run,1000);hb.addEventListener('pointerdown',function(){k=99});}
+})();
+</script>
+</body>
+</html>

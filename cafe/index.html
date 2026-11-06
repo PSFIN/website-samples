@@ -1,0 +1,534 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+<title>Ventanita Azul Café</title>
+<meta name="claude:viewport-fit-sides" content="cover">
+<meta name="description" content="Demo website for a fictional Miami Cuban café with a walk-up coffee window.">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Shrikhand&family=DM+Sans:opsz,wght@9..40,400;9..40,500;9..40,700&family=DM+Mono:wght@500&display=swap">
+<style>
+/* Layout: cobalt hero band edged with a cement-tile pattern, then a tabbed menu card on white, guava + mango used for food and accents */
+:root{
+  --cobalt:#1d3f9e; --cobalt-deep:#132b6e; --sky:#eef3ff; --paper:#ffffff;
+  --guava:#ec5f7e; --mango:#f6b232; --ink:#1a1f33; --ink-soft:#585f78; --line:#dfe5f3;
+  --display:"Shrikhand", "Cooper Black", Georgia, serif;
+  --body:"DM Sans", "Segoe UI", system-ui, sans-serif;
+  --mono:"DM Mono", ui-monospace, Menlo, monospace;
+  color-scheme:light;
+}
+*{box-sizing:border-box}
+[hidden]{display:none!important}
+html{scroll-behavior:smooth}
+@media (prefers-reduced-motion:reduce){html{scroll-behavior:auto}*{transition:none!important;animation:none!important}}
+body{margin:0;background:var(--paper);color:var(--ink);font:16px/1.6 var(--body);padding-bottom:76px}
+@media (min-width:860px){body{padding-bottom:0}}
+a{color:inherit}
+img,svg{max-width:100%}
+h1,h2,h3{margin:0;line-height:1.05;text-wrap:balance}
+h1,h2{font-family:var(--display);font-weight:400}
+h2{font-size:clamp(2rem,4.6vw,3rem);color:var(--cobalt)}
+h3{font-size:1.1rem;font-weight:700}
+p{margin:0}
+.wrap{max-width:1120px;margin:0 auto;padding-left:max(16px,env(safe-area-inset-left,0px));padding-right:max(16px,env(safe-area-inset-right,0px))}
+section{padding-block:clamp(56px,8vw,96px)}
+.kicker{font-family:var(--mono);font-size:.8rem;letter-spacing:.1em;text-transform:uppercase;color:var(--guava)}
+.lede{color:var(--ink-soft);font-size:1.08rem;max-width:56ch}
+.sec-head{display:grid;gap:10px;margin-bottom:34px}
+:focus-visible{outline:3px solid var(--mango);outline-offset:3px;border-radius:6px}
+
+.demo{background:var(--ink);color:#e9ecf7;font-size:.82rem;text-align:center}
+.demo .wrap{padding-block:7px}
+.demo b{color:var(--mango);font-weight:700}
+
+body::before{content:"";position:fixed;inset:0 0 auto;height:env(safe-area-inset-top,0px);z-index:10;background:var(--cobalt-deep)}
+header.top{position:sticky;top:env(safe-area-inset-top,0px);z-index:20;background:var(--cobalt-deep);color:#fff}
+header.top .wrap{display:flex;align-items:center;gap:16px;padding-block:12px}
+.logo{font-family:var(--display);font-size:1.45rem;text-decoration:none;color:#fff;line-height:1;display:flex;align-items:center;gap:10px}
+.logo span{color:var(--mango)}
+nav.main{display:none;gap:22px;margin-left:auto;font-size:.95rem}
+nav.main a{text-decoration:none;opacity:.85}
+nav.main a:hover{opacity:1}
+@media (min-width:960px){nav.main{display:flex}}
+.lang{display:inline-flex;border:1px solid rgba(255,255,255,.3);border-radius:999px;padding:3px;margin-left:auto}
+@media (min-width:960px){.lang{margin-left:0}}
+.lang button{border:0;background:none;color:#fff;font:700 .8rem var(--body);padding:5px 10px;border-radius:999px;cursor:pointer;opacity:.75}
+.lang button[aria-pressed="true"]{background:var(--mango);color:var(--ink);opacity:1}
+.btn{display:inline-flex;align-items:center;justify-content:center;gap:8px;padding:13px 22px;border-radius:12px;font:700 1rem var(--body);text-decoration:none;border:2px solid transparent;cursor:pointer;transition:transform .15s}
+.btn:hover{transform:translateY(-2px)}
+.btn-mango{background:var(--mango);color:var(--ink)}
+.btn-guava{background:var(--guava);color:#fff}
+.btn-line{border-color:currentColor;background:transparent}
+.btn-wa{background:#1f9d55;color:#fff}
+.hdr-order{display:none}
+@media (min-width:640px){.hdr-order{display:inline-flex;padding:9px 16px;font-size:.92rem}}
+
+/* hero */
+.hero{background:var(--cobalt);color:#fff;padding-block:clamp(40px,6vw,76px) 0;overflow:hidden}
+.hero .wrap{display:grid;gap:32px;align-items:end}
+@media (min-width:900px){.hero .wrap{grid-template-columns:1.1fr 1fr}}
+.hero h1{font-size:clamp(2.7rem,7.6vw,5rem);line-height:.98}
+.hero h1 span{color:var(--mango)}
+.hero .lede{color:#d5ddf7;margin-top:18px}
+.hero .cta-row{display:flex;flex-wrap:wrap;gap:12px;margin-top:26px}
+.open-now{display:inline-flex;border-radius:14px!important;align-items:center;gap:10px;margin-top:22px;font-size:.95rem;background:rgba(255,255,255,.1);padding:8px 14px;border-radius:999px}
+.open-now i{width:9px;height:9px;border-radius:50%;background:#4ade80;box-shadow:0 0 0 4px rgba(74,222,128,.25)}
+.hero-art{align-self:end;padding-bottom:0}
+.hero-copy{padding-bottom:clamp(40px,6vw,72px)}
+.tiles{height:46px;background-color:var(--cobalt-deep);background-image:
+  radial-gradient(circle at 50% 50%,var(--mango) 0 5px,transparent 6px),
+  radial-gradient(circle at 0 0,var(--guava) 0 14px,transparent 15px),
+  radial-gradient(circle at 100% 0,var(--guava) 0 14px,transparent 15px),
+  radial-gradient(circle at 0 100%,var(--guava) 0 14px,transparent 15px),
+  radial-gradient(circle at 100% 100%,var(--guava) 0 14px,transparent 15px),
+  linear-gradient(45deg,transparent 46%,rgba(255,255,255,.55) 46% 54%,transparent 54%),
+  linear-gradient(-45deg,transparent 46%,rgba(255,255,255,.55) 46% 54%,transparent 54%);
+  background-size:46px 46px}
+
+/* strip */
+.strip{background:var(--sky);padding-block:22px}
+.strip .wrap{display:flex;flex-wrap:wrap;gap:14px 34px;justify-content:space-between;font-size:.95rem}
+.strip b{display:block;font-family:var(--mono);font-size:.74rem;letter-spacing:.1em;text-transform:uppercase;color:var(--ink-soft);font-weight:500}
+
+/* menu */
+.tabs{display:flex;flex-wrap:wrap;gap:8px;margin-bottom:26px}
+.tabs button{font:700 .95rem var(--body);padding:9px 18px;border-radius:999px;border:2px solid var(--line);background:var(--paper);color:var(--ink);cursor:pointer}
+.tabs button[aria-selected="true"]{background:var(--cobalt);border-color:var(--cobalt);color:#fff}
+.menu-card{border:2px solid var(--cobalt);border-radius:20px;padding:clamp(20px,3.5vw,36px);display:grid;gap:22px 48px;grid-template-columns:1fr}
+@media (min-width:820px){.menu-card{grid-template-columns:1fr 1fr}}
+.item{display:grid;gap:3px;min-width:0}
+.item .row{display:flex;align-items:baseline;gap:10px}
+.item .row h3{font-size:1.06rem}
+.item .row .dots{flex:1;border-bottom:2px dotted #b9c3df;transform:translateY(-4px);min-width:16px}
+.item .row .price{font-family:var(--mono);font-weight:500;font-variant-numeric:tabular-nums;color:var(--cobalt)}
+.item p{color:var(--ink-soft);font-size:.93rem}
+.item .tag{display:inline-block;font-size:.7rem;font-weight:700;letter-spacing:.06em;text-transform:uppercase;color:var(--guava);margin-left:6px}
+.menu-note{margin-top:16px;font-size:.85rem;color:var(--ink-soft)}
+
+/* gallery */
+.gallery{background:var(--sky)}
+.gal{display:grid;gap:14px;grid-template-columns:repeat(2,minmax(0,1fr))}
+@media (min-width:820px){.gal{grid-template-columns:repeat(4,minmax(0,1fr))}}
+.gal figure{margin:0;border-radius:18px;overflow:hidden;background:var(--paper);display:grid}
+.gal figure svg{display:block;width:100%;height:auto;aspect-ratio:1/1}
+.gal figcaption{padding:12px 14px;font-weight:700;font-size:.95rem}
+.gal figcaption small{display:block;font-weight:400;color:var(--ink-soft);font-size:.84rem}
+.photo-note{margin-top:18px;font-size:.85rem;color:var(--ink-soft)}
+
+/* catering */
+.cater .wrap{display:grid;gap:28px;align-items:center}
+@media (min-width:860px){.cater .wrap{grid-template-columns:1fr 1fr}}
+.cater-box{background:var(--guava);color:#fff;border-radius:22px;padding:clamp(24px,4vw,40px);display:grid;gap:14px}
+.cater-box h2{color:#fff}
+.cater-box ul{margin:0;padding:0;list-style:none;display:grid;gap:8px}
+.cater-box li{display:flex;justify-content:space-between;gap:12px;border-bottom:1px solid rgba(255,255,255,.3);padding-bottom:8px}
+.cater-box li span:last-child{font-family:var(--mono)}
+
+/* reviews */
+.sample-badge{justify-self:start;font-family:var(--mono);font-size:.72rem;letter-spacing:.08em;text-transform:uppercase;padding:4px 10px;border-radius:999px;border:1.5px dashed var(--ink-soft);color:var(--ink-soft)}
+.rev-grid{display:grid;gap:18px;grid-template-columns:repeat(auto-fit,minmax(min(100%,280px),1fr))}
+.rev{margin:0;padding:26px;border-radius:20px;background:var(--sky);display:grid;gap:12px;align-content:start}
+.rev:nth-child(2){background:#fff4dd}
+.rev:nth-child(3){background:#fde8ed}
+.stars{color:var(--mango);letter-spacing:2px}
+.rev blockquote{margin:0;font-size:1.02rem}
+.rev figcaption{font-size:.88rem;color:var(--ink-soft)}
+.rev figcaption b{color:var(--ink)}
+
+/* visit */
+.visit{background:var(--cobalt-deep);color:#fff}
+.visit h2{color:var(--mango)}
+.visit .wrap{display:grid;gap:34px}
+@media (min-width:900px){.visit .wrap{grid-template-columns:1fr 1.15fr;align-items:start}}
+.hours{width:100%;border-collapse:collapse;margin-top:22px;font-variant-numeric:tabular-nums}
+.hours td{padding:9px 0;border-bottom:1px solid rgba(255,255,255,.15)}
+.hours td:last-child{text-align:right;font-family:var(--mono);font-size:.92rem}
+.addr{margin-top:20px;color:#cfd8f5}
+.addr strong{color:#fff;display:block;font-size:1.1rem}
+.map{border-radius:20px;overflow:hidden;background:#dfe7f7;position:relative}
+.map svg{display:block;width:100%;height:auto}
+.map-note{position:absolute;left:12px;right:12px;bottom:12px;background:rgba(255,255,255,.95);color:var(--ink);border-radius:12px;padding:10px 12px;font-size:.85rem;display:flex;flex-wrap:wrap;gap:8px;justify-content:space-between}
+.map-note a{font-weight:700;color:var(--cobalt)}
+
+/* order form */
+.order .wrap{display:grid;gap:36px}
+@media (min-width:900px){.order .wrap{grid-template-columns:1fr 1.25fr}}
+.contact{display:grid;gap:12px;margin-top:24px}
+.contact .num{font-family:var(--mono);font-size:1.2rem;user-select:all}
+form{border:2px solid var(--cobalt);border-radius:20px;padding:clamp(20px,3.5vw,32px);display:grid;gap:16px;grid-template-columns:1fr 1fr}
+form .full{grid-column:1/-1}
+@media (max-width:560px){form{grid-template-columns:1fr}}
+label{display:grid;gap:6px;font-size:.88rem;font-weight:700}
+input,select,textarea{font:inherit;font-weight:400;font-size:1rem;padding:12px 14px;border:1.5px solid var(--line);border-radius:10px;background:var(--sky);color:var(--ink);width:100%;min-width:0}
+input:focus,select:focus,textarea:focus{outline:none;border-color:var(--cobalt);background:#fff}
+textarea{min-height:96px;resize:vertical}
+.form-note{grid-column:1/-1;background:#fff4dd;border-radius:10px;padding:12px 14px;font-size:.92rem}
+.fine{grid-column:1/-1;font-size:.8rem;color:var(--ink-soft)}
+
+footer{background:var(--ink);color:#b9bfd6;font-size:.9rem}
+footer .wrap{padding-block:34px;display:grid;gap:14px}
+@media (min-width:760px){footer .wrap{grid-template-columns:1fr auto;align-items:end}}
+
+.mbar{position:fixed;left:0;right:0;bottom:0;z-index:30;display:grid;grid-template-columns:1fr 1fr;gap:10px;background:var(--cobalt-deep);padding-top:10px;padding-bottom:calc(10px + env(safe-area-inset-bottom,0px));padding-left:max(12px,env(safe-area-inset-left,0px));padding-right:max(12px,env(safe-area-inset-right,0px))}
+.mbar .btn{padding:12px 10px;font-size:.95rem}
+@media (min-width:860px){.mbar{display:none}}
+
+/* ---- motion layer ---- */
+@keyframes rise{from{opacity:0;transform:translateY(34px)}to{opacity:1;transform:none}}
+@keyframes marq{to{transform:translateX(-50%)}}
+@keyframes grow{to{transform:scaleX(1)}}
+@keyframes pulse{0%{box-shadow:0 0 0 0 var(--pulse,rgba(31,157,85,.5))}70%{box-shadow:0 0 0 16px transparent}100%{box-shadow:0 0 0 0 transparent}}
+@keyframes shine{to{background-position:200% center}}
+.progress{position:fixed;left:0;right:0;top:env(safe-area-inset-top,0px);height:3px;background:linear-gradient(90deg,#f6b232,#ec5f7e);transform-origin:0 50%;transform:scaleX(0);z-index:60;pointer-events:none}
+@supports (animation-timeline:scroll()){.progress{animation:grow linear both;animation-timeline:scroll(root)}}
+@supports not (animation-timeline:scroll()){.progress{display:none}}
+.btn{position:relative;overflow:hidden;isolation:isolate}
+.btn::after{content:"";position:absolute;inset:0;background:linear-gradient(115deg,transparent 30%,rgba(255,255,255,.45) 50%,transparent 70%);transform:translateX(-130%);transition:transform .7s;z-index:-1;pointer-events:none}
+.btn:hover::after{transform:translateX(130%)}
+.marquee{overflow:hidden;white-space:nowrap;display:flex}
+.marquee .track{display:flex;flex:none;align-items:center;animation:marq 30s linear infinite}
+.marquee:hover .track{animation-play-state:paused}
+.mbar .btn-wa{--pulse:rgba(31,157,85,.55);animation:pulse 2.4s 2s infinite}
+@supports (animation-timeline:view()){
+  .sec-head,.item,.rev,.gal figure,.cater .wrap>div,.hours tr,.order form,.visit .map,.strip p{animation:rise linear both;animation-timeline:view();animation-range:entry 0% entry 70%}
+}
+
+.hero{position:relative}
+.hero-copy>*{animation:rise .9s cubic-bezier(.2,.7,.2,1) both}
+.hero-copy>:nth-child(2){animation-delay:.08s}.hero-copy>:nth-child(3){animation-delay:.18s}.hero-copy>:nth-child(4){animation-delay:.28s}.hero-copy>:nth-child(5){animation-delay:.38s}
+.hero h1>span:first-child{display:inline-block;animation:pop 1s .2s cubic-bezier(.3,1.6,.5,1) both;transform-origin:left bottom}
+@keyframes pop{from{opacity:0;transform:scale(.3) rotate(-10deg)}to{opacity:1;transform:none}}
+.hero-art svg{animation:rise 1.1s .3s cubic-bezier(.2,.7,.2,1) both}
+.steam{animation:steam 2.6s ease-in-out infinite}
+@keyframes steam{0%{opacity:0;transform:translateY(10px)}45%{opacity:.95}100%{opacity:0;transform:translateY(-18px)}}
+.neon{filter:drop-shadow(0 0 4px #ff9ab6) drop-shadow(0 0 12px #ec5f7e);animation:flicker 5s infinite}
+@keyframes flicker{0%,17%,21%,24%,52%,56%,100%{opacity:1}19%,23%,54%{opacity:.25}}
+.cupwob{animation:wob 3.4s ease-in-out infinite;transform-box:fill-box;transform-origin:50% 100%}
+@keyframes wob{0%,100%{transform:rotate(0)}50%{transform:rotate(-4deg) translateY(-3px)}}
+.tiles{animation:tiles 5s linear infinite}
+@keyframes tiles{to{background-position:46px 0}}
+.open-now i{animation:pulseg 1.8s infinite}
+@keyframes pulseg{0%{box-shadow:0 0 0 0 rgba(74,222,128,.6)}70%{box-shadow:0 0 0 10px rgba(74,222,128,0)}100%{box-shadow:0 0 0 0 rgba(74,222,128,0)}}
+.hero .btn-mango{--pulse:rgba(246,178,50,.6);animation:pulse 2.2s 1.4s infinite}
+.marq-wrap{overflow:hidden;padding-block:34px 6px}
+.marquee.big{transform:rotate(-2.5deg);width:112%;margin-left:-6%;background:var(--guava);padding-block:14px;font-family:var(--display);font-size:clamp(1.6rem,4vw,2.6rem);color:#fff;box-shadow:0 14px 30px -18px rgba(236,95,126,.8)}
+.marquee.big .track{animation-duration:26s}
+.marquee.big .track span{padding-inline:24px}
+.marquee.big .track i{font-style:normal;color:var(--mango)}
+.menu-card:not([hidden]){animation:rise .5s cubic-bezier(.2,.7,.2,1) both}
+.tabs button{transition:translate .2s,background .2s}.tabs button:hover{translate:0 -3px}
+.item{transition:translate .25s}.item:hover{translate:6px 0}
+.gal figure{transition:rotate .45s cubic-bezier(.3,1.5,.5,1),scale .45s cubic-bezier(.3,1.5,.5,1),box-shadow .4s}
+.gal figure:nth-child(odd){rotate:-2.5deg}.gal figure:nth-child(even){rotate:2.5deg}
+.gal figure:hover{rotate:0deg;scale:1.06;box-shadow:0 26px 44px -20px rgba(19,43,110,.55);z-index:1}
+.gal figure svg{transition:transform .6s}.gal figure:hover svg{transform:scale(1.1) rotate(-4deg)}
+.cater-box{transition:rotate .45s,scale .45s}.cater-box:hover{rotate:-1.5deg;scale:1.02}
+.rev{transition:translate .35s,rotate .35s}.rev:hover{translate:0 -6px;rotate:1deg}
+</style>
+</head>
+<body>
+<div class="progress" aria-hidden="true"></div>
+
+<div class="demo"><div class="wrap"><b data-es="Sitio de muestra">Sample website</b> · <span data-es="Negocio ficticio creado para mostrar cómo podría verse su sitio web.">Fictional business, built to show what your website could look like.</span></div></div>
+
+<header class="top">
+  <div class="wrap">
+    <a class="logo" href="#top">Ventanita <span>Azul</span></a>
+    <nav class="main" aria-label="Main">
+      <a href="#menu" data-es="Menú">Menu</a>
+      <a href="#catering" data-es="Catering">Catering</a>
+      <a href="#reviews" data-es="Reseñas">Reviews</a>
+      <a href="#visit" data-es="Visítenos">Visit</a>
+    </nav>
+    <div class="lang" role="group" aria-label="Language">
+      <button type="button" data-lang="en" aria-pressed="true">EN</button>
+      <button type="button" data-lang="es" aria-pressed="false">ES</button>
+    </div>
+    <a class="btn btn-mango hdr-order" href="#order" data-es="Ordenar">Order ahead</a>
+  </div>
+</header>
+
+<main id="top">
+<section class="hero">
+  <div class="wrap">
+    <div class="hero-copy">
+      <p class="kicker" style="color:var(--mango)" data-es="Café cubano · Little Havana">Cuban café · Little Havana</p>
+      <h1 style="margin-top:14px"><span data-es="Cafecito">Cafecito</span> <span style="color:#fff" data-es="en la ventanita desde las 6 a.m.">at the window from 6 a.m.</span></h1>
+      <p class="lede" data-es="Coladas, pastelitos de guayaba recién horneados y cubanos en pan tostado. Pida para recoger o pase por la ventanita.">Coladas, guava pastelitos fresh from the oven and Cubanos pressed to order. Order ahead for pickup or walk up to the window.</p>
+      <div class="cta-row">
+        <a class="btn btn-mango" href="#menu" data-es="Ver el menú">See the menu</a>
+        <a class="btn btn-wa" href="https://wa.me/13055550178" target="_blank" rel="noopener" data-es="Ordenar por WhatsApp">Order on WhatsApp</a>
+      </div>
+      <p class="open-now"><i aria-hidden="true"></i><span><span data-es="Abierto hoy 6 a.m.–8 p.m.">Open today 6 a.m.–8 p.m.</span> · <span style="white-space:nowrap">(305) 555-0178</span></span></p>
+    </div>
+    <div class="hero-art" aria-hidden="true">
+      <svg viewBox="0 0 520 400">
+        <rect x="40" y="40" width="440" height="360" rx="0" fill="#132b6e"/>
+        <path d="M40 40h440v34H40z" fill="#ec5f7e"/>
+        <path d="M40 74h440" stroke="#fff" stroke-width="3" stroke-dasharray="22 12"/>
+        <text x="260" y="66" text-anchor="middle" font-family="Shrikhand, Georgia, serif" font-size="22" fill="#fff">CAFÉ · COLADA · PASTELITOS</text>
+        <rect x="80" y="104" width="360" height="200" rx="10" fill="#f6b232"/>
+        <rect x="96" y="120" width="328" height="168" rx="6" fill="#fff4dd"/>
+        <text class="neon" x="116" y="164" font-family="Shrikhand, Georgia, serif" font-size="28" fill="#ec5f7e">¡Abierto!</text>
+        <rect x="70" y="296" width="380" height="22" rx="4" fill="#ffffff"/>
+        <!-- colada cup + tacitas -->
+        <path d="M150 238h70l-8 52h-54z" fill="#ffffff" stroke="#1a1f33" stroke-width="3"/>
+        <path d="M160 238c0-14 50-14 50 0" fill="#6b3f22"/>
+        <rect x="146" y="226" width="78" height="14" rx="5" fill="#1a1f33"/>
+        <g fill="#fff" stroke="#1a1f33" stroke-width="3">
+          <path d="M250 270h26l-3 22h-20z"/><path d="M286 270h26l-3 22h-20z"/><path d="M322 270h26l-3 22h-20z"/>
+        </g>
+        <g fill="#6b3f22"><rect x="252" y="270" width="22" height="5"/><rect x="288" y="270" width="22" height="5"/><rect x="324" y="270" width="22" height="5"/></g>
+        <g stroke="#585f78" stroke-width="3" fill="none" stroke-linecap="round"><path class="steam" d="M168 210c-8-12 8-18 0-30"/><path class="steam" style="animation-delay:.8s" d="M188 210c-8-12 8-18 0-30"/><path class="steam" style="animation-delay:1.6s" d="M208 210c-8-12 8-18 0-30"/></g>
+        <!-- pastelito --><g class="cupwob">
+        <rect x="360" y="246" width="64" height="44" rx="8" fill="#e9a54c" stroke="#1a1f33" stroke-width="3"/>
+        <path d="M368 262h48M368 274h48" stroke="#c97f2c" stroke-width="3"/>
+        <circle cx="392" cy="256" r="6" fill="#ec5f7e"/></g>
+        <!-- sign -->
+        <rect x="300" y="138" width="110" height="62" rx="8" fill="#1d3f9e"/>
+        <text x="355" y="164" text-anchor="middle" font-family="DM Mono, monospace" font-size="13" fill="#f6b232">CAFECITO</text>
+        <text x="355" y="188" text-anchor="middle" font-family="DM Mono, monospace" font-size="18" fill="#fff">$1.75</text>
+        <rect x="0" y="380" width="520" height="20" fill="#132b6e"/>
+      </svg>
+    </div>
+  </div>
+  <div class="tiles" aria-hidden="true"></div>
+</section>
+
+<div class="strip">
+  <div class="wrap">
+    <p><b data-es="Horario">Hours</b><span data-es="Lun–Sáb 6 a.m.–8 p.m. · Dom 7 a.m.–3 p.m.">Mon–Sat 6 a.m.–8 p.m. · Sun 7 a.m.–3 p.m.</span></p>
+    <p><b data-es="Dirección">Address</b><span data-es="Calle Ocho, Little Havana (ejemplo)">Calle Ocho, Little Havana (sample)</span></p>
+    <p><b data-es="Teléfono">Phone</b><span style="user-select:all">(305) 555-0178</span></p>
+  </div>
+</div>
+
+<div class="marq-wrap" aria-hidden="true"><div class="marquee big"><div class="track"><span>Cafecito</span><i>✺</i><span>Colada</span><i>✺</i><span>Croquetas</span><i>✺</i><span>Pastelitos</span><i>✺</i><span>Cubanos</span><i>✺</i><span>Cortadito</span><i>✺</i><span>Medianoche</span><i>✺</i><span>Cafecito</span><i>✺</i><span>Colada</span><i>✺</i><span>Croquetas</span><i>✺</i><span>Pastelitos</span><i>✺</i><span>Cubanos</span><i>✺</i><span>Cortadito</span><i>✺</i><span>Medianoche</span><i>✺</i></div></div></div>
+
+<section id="menu">
+  <div class="wrap">
+    <div class="sec-head">
+      <p class="kicker" data-es="El menú">The menu</p>
+      <h2 data-es="Lo de siempre, bien hecho">The classics, done right</h2>
+    </div>
+    <div class="tabs" role="tablist" aria-label="Menu sections">
+      <button type="button" role="tab" id="tab-coffee" aria-controls="p-coffee" aria-selected="true" data-es="Café">Coffee</button>
+      <button type="button" role="tab" id="tab-break" aria-controls="p-break" aria-selected="false" data-es="Desayuno">Breakfast</button>
+      <button type="button" role="tab" id="tab-sand" aria-controls="p-sand" aria-selected="false" data-es="Sándwiches">Sandwiches</button>
+      <button type="button" role="tab" id="tab-bake" aria-controls="p-bake" aria-selected="false" data-es="Panadería">Bakery</button>
+    </div>
+
+    <div class="menu-card" role="tabpanel" id="p-coffee" aria-labelledby="tab-coffee">
+      <div class="item"><div class="row"><h3>Cafecito</h3><span class="dots"></span><span class="price">$1.75</span></div><p data-es="Espresso cubano con espumita de azúcar.">Cuban espresso with sweet espumita.</p></div>
+      <div class="item"><div class="row"><h3>Colada<span class="tag" data-es="Para compartir">To share</span></h3><span class="dots"></span><span class="price">$2.50</span></div><p data-es="Cuatro onzas con tacitas para la oficina.">Four ounces with little cups for the office.</p></div>
+      <div class="item"><div class="row"><h3>Cortadito</h3><span class="dots"></span><span class="price">$2.75</span></div><p data-es="Café cubano con leche evaporada caliente.">Cuban coffee cut with steamed evaporated milk.</p></div>
+      <div class="item"><div class="row"><h3>Café con leche</h3><span class="dots"></span><span class="price">$3.50</span></div><p data-es="Con pan cubano tostado y mantequilla, $5.25.">With buttered Cuban toast, $5.25.</p></div>
+      <div class="item"><div class="row"><h3 data-es="Batido de mamey">Mamey batido</h3><span class="dots"></span><span class="price">$5.95</span></div><p data-es="Batido de fruta fresca con leche.">Fresh tropical fruit shake with milk.</p></div>
+      <div class="item"><div class="row"><h3 data-es="Jugo de guanábana">Guanábana juice</h3><span class="dots"></span><span class="price">$4.50</span></div><p data-es="Natural, hecho cada mañana.">Fresh-made every morning.</p></div>
+    </div>
+    <div class="menu-card" role="tabpanel" id="p-break" aria-labelledby="tab-break" hidden>
+      <div class="item"><div class="row"><h3 data-es="Desayuno cubano">Cuban breakfast</h3><span class="dots"></span><span class="price">$9.50</span></div><p data-es="Dos huevos, jamón o chorizo, pan tostado y café con leche.">Two eggs, ham or chorizo, Cuban toast and café con leche.</p></div>
+      <div class="item"><div class="row"><h3 data-es="Tortilla de plátano">Sweet plantain omelet</h3><span class="dots"></span><span class="price">$8.75</span></div><p data-es="Huevos con plátano maduro y queso blanco.">Eggs folded with ripe plantain and white cheese.</p></div>
+      <div class="item"><div class="row"><h3 data-es="Pan con bistec y huevo">Steak &amp; egg sandwich</h3><span class="dots"></span><span class="price">$10.25</span></div><p data-es="Bistec de palomilla, huevo frito y papitas.">Palomilla steak, fried egg and potato sticks.</p></div>
+      <div class="item"><div class="row"><h3 data-es="Avena cubana">Cuban oatmeal</h3><span class="dots"></span><span class="price">$4.25</span></div><p data-es="Con canela y leche condensada.">With cinnamon and condensed milk.</p></div>
+    </div>
+    <div class="menu-card" role="tabpanel" id="p-sand" aria-labelledby="tab-sand" hidden>
+      <div class="item"><div class="row"><h3 data-es="Cubano">Cubano</h3><span class="dots"></span><span class="price">$11.50</span></div><p data-es="Lechón asado, jamón, queso suizo, pepinillo y mostaza.">Roast pork, ham, Swiss, pickles and mustard, pressed.</p></div>
+      <div class="item"><div class="row"><h3>Medianoche</h3><span class="dots"></span><span class="price">$10.95</span></div><p data-es="Lo mismo que el cubano, en pan dulce de huevo.">The Cubano build on sweet egg bread.</p></div>
+      <div class="item"><div class="row"><h3>Frita<span class="tag" data-es="Favorito">Favorite</span></h3><span class="dots"></span><span class="price">$9.75</span></div><p data-es="Hamburguesa sazonada con papitas fritas encima.">Seasoned patty topped with crispy shoestring fries.</p></div>
+      <div class="item"><div class="row"><h3 data-es="Pan con lechón">Roast pork sandwich</h3><span class="dots"></span><span class="price">$10.50</span></div><p data-es="Lechón con mojo y cebolla.">Mojo roast pork with grilled onions.</p></div>
+    </div>
+    <div class="menu-card" role="tabpanel" id="p-bake" aria-labelledby="tab-bake" hidden>
+      <div class="item"><div class="row"><h3 data-es="Pastelito de guayaba">Guava pastelito</h3><span class="dots"></span><span class="price">$1.95</span></div><p data-es="O guayaba y queso, $2.25.">Or guava &amp; cheese, $2.25.</p></div>
+      <div class="item"><div class="row"><h3 data-es="Croqueta de jamón">Ham croqueta</h3><span class="dots"></span><span class="price">$1.25</span></div><p data-es="La docena por $13.">$13 by the dozen.</p></div>
+      <div class="item"><div class="row"><h3 data-es="Empanada de carne">Beef empanada</h3><span class="dots"></span><span class="price">$2.95</span></div><p data-es="Horneada, con picadillo.">Baked, filled with picadillo.</p></div>
+      <div class="item"><div class="row"><h3>Flan</h3><span class="dots"></span><span class="price">$4.95</span></div><p data-es="Receta de la abuela.">Grandma's recipe.</p></div>
+    </div>
+    <p class="menu-note" data-es="Menú y precios de ejemplo. Su menú real se puede actualizar desde el teléfono.">Sample menu and prices. Your real menu can be updated from your phone.</p>
+  </div>
+</section>
+
+<section class="gallery">
+  <div class="wrap">
+    <div class="sec-head">
+      <p class="kicker" data-es="Galería">Gallery</p>
+      <h2 data-es="Hecho aquí cada mañana">Made here every morning</h2>
+    </div>
+    <div class="gal">
+      <figure>
+        <svg viewBox="0 0 200 200" aria-hidden="true"><rect width="200" height="200" fill="#1d3f9e"/><circle cx="100" cy="110" r="62" fill="#fff"/><circle cx="100" cy="110" r="44" fill="#6b3f22"/><ellipse cx="100" cy="102" rx="30" ry="14" fill="#c48a5a"/><path d="M162 110c18 0 18 26 0 26" stroke="#fff" stroke-width="8" fill="none"/></svg>
+        <figcaption>Cafecito<small data-es="Con espumita">With espumita</small></figcaption>
+      </figure>
+      <figure>
+        <svg viewBox="0 0 200 200" aria-hidden="true"><rect width="200" height="200" fill="#f6b232"/><rect x="40" y="70" width="120" height="70" rx="10" fill="#e9a54c" stroke="#7a4a1c" stroke-width="4"/><path d="M50 95h100M50 115h100" stroke="#c97f2c" stroke-width="4"/><circle cx="100" cy="88" r="10" fill="#ec5f7e"/></svg>
+        <figcaption data-es="Pastelito de guayaba">Guava pastelito<small data-es="Recién horneado">Fresh from the oven</small></figcaption>
+      </figure>
+      <figure>
+        <svg viewBox="0 0 200 200" aria-hidden="true"><rect width="200" height="200" fill="#ec5f7e"/><g fill="#c9772f" stroke="#7a4a1c" stroke-width="4"><rect x="34" y="70" width="60" height="28" rx="14"/><rect x="106" y="70" width="60" height="28" rx="14"/><rect x="70" y="110" width="60" height="28" rx="14"/></g></svg>
+        <figcaption data-es="Croquetas">Croquetas<small data-es="Jamón, pollo o pescado">Ham, chicken or fish</small></figcaption>
+      </figure>
+      <figure>
+        <svg viewBox="0 0 200 200" aria-hidden="true"><rect width="200" height="200" fill="#132b6e"/><path d="M28 90l144-14 4 22-144 14z" fill="#e7b46a"/><path d="M32 112l144-14 2 10-144 14z" fill="#f3d36b"/><path d="M32 122l146-14 2 8-146 14z" fill="#f2a4b4"/><path d="M34 130l146-14 4 22-146 14z" fill="#e7b46a"/><path d="M48 100l100-10M52 146l100-10" stroke="#b9853e" stroke-width="3"/></svg>
+        <figcaption>Cubano<small data-es="Prensado al momento">Pressed to order</small></figcaption>
+      </figure>
+    </div>
+    <p class="photo-note" data-es="Ilustraciones de ejemplo. Su sitio real mostrará fotos de su comida y su local.">Illustrations for this sample. Your real site shows photos of your own food and storefront.</p>
+  </div>
+</section>
+
+<section id="catering" class="cater">
+  <div class="wrap">
+    <div>
+      <p class="kicker" data-es="Catering y pedidos grandes">Catering &amp; big orders</p>
+      <h2 style="margin-top:10px" data-es="Bandejas para la oficina, cumpleaños y bautizos">Trays for the office, birthdays and baptisms</h2>
+      <p class="lede" style="margin-top:14px" data-es="Pida con 24 horas de anticipación. Entregamos en Little Havana, Coral Gables, Brickell y Doral.">Order 24 hours ahead. We deliver to Little Havana, Coral Gables, Brickell and Doral.</p>
+      <a class="btn btn-guava" style="margin-top:22px" href="#order" data-es="Pedir catering">Request catering</a>
+    </div>
+    <div class="cater-box">
+      <h2 style="font-size:1.8rem" data-es="Bandejas populares">Popular trays</h2>
+      <ul>
+        <li><span data-es="50 croquetas">50 croquetas</span><span>$55</span></li>
+        <li><span data-es="30 pastelitos surtidos">30 assorted pastelitos</span><span>$54</span></li>
+        <li><span data-es="20 bocaditos">20 bocaditos</span><span>$38</span></li>
+        <li><span data-es="Colada para 12">Colada for 12</span><span>$9</span></li>
+      </ul>
+    </div>
+  </div>
+</section>
+
+<section id="reviews" style="padding-top:0">
+  <div class="wrap">
+    <div class="sec-head">
+      <span class="sample-badge" data-es="Reseñas de ejemplo">Sample reviews</span>
+      <h2 data-es="Lo que dice el barrio">What the neighborhood says</h2>
+      <p class="lede" data-es="Texto de ejemplo. Su sitio real mostrará sus reseñas de Google y Yelp.">Placeholder text. Your real site will show your Google and Yelp reviews.</p>
+    </div>
+    <div class="rev-grid">
+      <figure class="rev"><div class="stars" aria-label="5 out of 5 stars">★★★★★</div><blockquote data-es="El cortadito me recuerda a mi abuela. Paso todos los días antes del trabajo y siempre está caliente.">The cortadito tastes like my abuela's. I stop by every day before work and it's always hot.</blockquote><figcaption><b>Yesenia M.</b> · Little Havana</figcaption></figure>
+      <figure class="rev"><div class="stars" aria-label="5 out of 5 stars">★★★★★</div><blockquote data-es="Pedimos 100 croquetas para la oficina por WhatsApp y llegaron a tiempo y calientes.">Ordered 100 croquetas for the office over WhatsApp. On time and still warm.</blockquote><figcaption><b>Jorge A.</b> · Brickell</figcaption></figure>
+      <figure class="rev"><div class="stars" aria-label="5 out of 5 stars">★★★★☆</div><blockquote data-es="El mejor cubano de la Calle Ocho. Los sábados hay cola, pero vale la pena.">Best Cubano on Calle Ocho. There's a line on Saturdays, but it moves fast.</blockquote><figcaption><b>Kevin T.</b> · <span data-es="Visitante">Visitor</span></figcaption></figure>
+    </div>
+  </div>
+</section>
+
+<section id="visit" class="visit">
+  <div class="wrap">
+    <div>
+      <p class="kicker" style="color:#f7a8b9" data-es="Visítenos">Visit us</p>
+      <h2 style="margin-top:10px" data-es="En la Calle Ocho">On Calle Ocho</h2>
+      <p class="addr"><strong>Calle Ocho, Little Havana, Miami</strong><span data-es="Dirección de ejemplo · Parqueo en la parte de atrás">Sample address · Parking in the back</span></p>
+      <table class="hours">
+        <tbody>
+          <tr><td data-es="Lunes a viernes">Monday to Friday</td><td>6:00 a.m. – 8:00 p.m.</td></tr>
+          <tr><td data-es="Sábado">Saturday</td><td>6:00 a.m. – 8:00 p.m.</td></tr>
+          <tr><td data-es="Domingo">Sunday</td><td>7:00 a.m. – 3:00 p.m.</td></tr>
+        </tbody>
+      </table>
+    </div>
+    <div class="map">
+      <svg viewBox="0 0 600 420" role="img" aria-label="Illustrated street map around the café">
+        <rect width="600" height="420" fill="#e6ecf8"/>
+        <g fill="#d3dcf0"><rect x="20" y="20" width="150" height="110" rx="6"/><rect x="200" y="20" width="180" height="110" rx="6"/><rect x="410" y="20" width="170" height="110" rx="6"/><rect x="20" y="240" width="150" height="160" rx="6"/><rect x="200" y="240" width="180" height="160" rx="6"/><rect x="410" y="240" width="170" height="160" rx="6"/></g>
+        <rect x="0" y="150" width="600" height="70" fill="#ffffff"/>
+        <path d="M0 185h600" stroke="#f6b232" stroke-width="3" stroke-dasharray="18 12"/>
+        <rect x="178" y="0" width="16" height="420" fill="#fff"/><rect x="390" y="0" width="16" height="420" fill="#fff"/>
+        <text x="40" y="208" font-family="DM Sans, system-ui, sans-serif" font-size="14" font-weight="700" fill="#585f78">SW 8th St · Calle Ocho</text>
+        <rect x="430" y="60" width="90" height="44" rx="6" fill="#bcd9c4"/><text x="475" y="87" text-anchor="middle" font-family="DM Sans, system-ui, sans-serif" font-size="12" fill="#2e5a3b">Park</text>
+        <g transform="translate(290,140)"><path d="M0 0c-18-22-26-34-26-46a26 26 0 0 1 52 0c0 12-8 24-26 46z" fill="#ec5f7e" stroke="#fff" stroke-width="3"/><circle cy="-46" r="9" fill="#fff"/></g>
+        <rect x="236" y="62" width="108" height="26" rx="13" fill="#132b6e"/><text x="290" y="80" text-anchor="middle" font-family="DM Sans, system-ui, sans-serif" font-size="13" font-weight="700" fill="#fff">Ventanita Azul</text>
+      </svg>
+      <div class="map-note"><span data-es="Aquí va el mapa de Google en su sitio real">Live Google Map goes here on your real site</span><a href="https://www.google.com/maps/search/?api=1&amp;query=Little+Havana%2C+Miami%2C+FL" target="_blank" rel="noopener" data-es="Cómo llegar">Get directions</a></div>
+    </div>
+  </div>
+</section>
+
+<section id="order" class="order">
+  <div class="wrap">
+    <div>
+      <p class="kicker" data-es="Pedidos">Orders</p>
+      <h2 style="margin-top:10px" data-es="Ordene para recoger o pida catering">Order pickup or catering</h2>
+      <p class="lede" style="margin-top:14px" data-es="Le confirmamos por mensaje de texto o WhatsApp cuando su pedido esté listo.">We confirm by text or WhatsApp when your order is ready.</p>
+      <div class="contact">
+        <span class="num">(305) 555-0178</span>
+        <div style="display:flex;flex-wrap:wrap;gap:10px">
+          <a class="btn btn-line" style="color:var(--cobalt);padding:9px 16px" href="tel:+13055550178" data-es="Llamar">Call</a>
+          <a class="btn btn-wa" style="padding:9px 16px" href="https://wa.me/13055550178" target="_blank" rel="noopener">WhatsApp</a>
+        </div>
+      </div>
+    </div>
+    <form data-demo novalidate>
+      <label><span data-es="Nombre">Name</span><input id="o-name" name="name" autocomplete="name" placeholder="Jorge Alvarez"></label>
+      <label><span data-es="Teléfono">Phone</span><input id="o-phone" name="phone" type="tel" autocomplete="tel" placeholder="(305) 555-0100"></label>
+      <label><span data-es="Tipo de pedido">Order type</span>
+        <select id="o-type" name="type">
+          <option data-es="Recoger hoy">Pickup today</option>
+          <option data-es="Catering / bandejas">Catering / trays</option>
+          <option data-es="Entrega a oficina">Office delivery</option>
+        </select>
+      </label>
+      <label><span data-es="Fecha y hora">Date &amp; time</span><input id="o-when" name="when" type="datetime-local"></label>
+      <label class="full"><span data-es="Su pedido">Your order</span><textarea id="o-items" name="items" data-es-ph="Ej.: 2 cubanos, 1 colada, 12 croquetas" placeholder="e.g. 2 Cubanos, 1 colada, 12 croquetas"></textarea></label>
+      <button class="btn btn-guava full" type="submit" data-es="Enviar pedido">Send order</button>
+      <p class="form-note" role="status" hidden data-es="Este es un formulario de demostración, no se envió nada. En su sitio real, los pedidos le llegan directo a su correo o WhatsApp.">This is a demo form, so nothing was sent. On your real site, orders go straight to your email or WhatsApp.</p>
+      <p class="fine" data-es="Formulario de demostración: no guarda ni envía datos.">Demo form: no data is stored or sent.</p>
+    </form>
+  </div>
+</section>
+</main>
+
+<footer>
+  <div class="wrap">
+    <div>
+      <a class="logo" href="#top">Ventanita <span>Azul</span></a>
+      <p style="margin-top:10px" data-es="Negocio ficticio. Nombre, menú, reseñas, dirección y teléfono son ejemplos.">Fictional business. Name, menu, reviews, address and phone number are examples.</p>
+    </div>
+    <p>© 2026 Ventanita Azul Café (sample)</p>
+  </div>
+</footer>
+
+<div class="mbar">
+  <a class="btn btn-mango" href="tel:+13055550178" data-es="Llamar">Call</a>
+  <a class="btn btn-wa" href="https://wa.me/13055550178" target="_blank" rel="noopener">WhatsApp</a>
+</div>
+
+<script>
+(function(){
+  var tx=[].slice.call(document.querySelectorAll('[data-es]'));
+  tx.forEach(function(e){e.setAttribute('data-en',e.innerHTML)});
+  var ph=[].slice.call(document.querySelectorAll('[data-es-ph]'));
+  ph.forEach(function(e){e.setAttribute('data-en-ph',e.placeholder)});
+  function setLang(l){
+    document.documentElement.lang=l;
+    tx.forEach(function(e){e.innerHTML=e.getAttribute(l==='es'?'data-es':'data-en')});
+    ph.forEach(function(e){e.placeholder=e.getAttribute(l==='es'?'data-es-ph':'data-en-ph')});
+    document.querySelectorAll('[data-lang]').forEach(function(b){b.setAttribute('aria-pressed',String(b.getAttribute('data-lang')===l))});
+    try{localStorage.setItem('demo-lang',l)}catch(err){}
+  }
+  document.querySelectorAll('[data-lang]').forEach(function(b){b.addEventListener('click',function(){setLang(b.getAttribute('data-lang'))})});
+  var saved='en';try{saved=localStorage.getItem('demo-lang')||'en'}catch(err){}
+  if(saved==='es')setLang('es');
+  var tabs=[].slice.call(document.querySelectorAll('[role="tab"]'));
+  tabs.forEach(function(t){t.addEventListener('click',function(){
+    tabs.forEach(function(o){var on=o===t;o.setAttribute('aria-selected',String(on));document.getElementById(o.getAttribute('aria-controls')).hidden=!on});
+  })});
+  document.querySelectorAll('form[data-demo]').forEach(function(f){
+    f.addEventListener('submit',function(e){e.preventDefault();var n=f.querySelector('.form-note');n.hidden=false;n.setAttribute('tabindex','-1');n.focus()});
+  });
+
+  var reduce=window.matchMedia&&matchMedia('(prefers-reduced-motion: reduce)').matches;
+  if(!reduce&&'IntersectionObserver' in window){
+    var cio=new IntersectionObserver(function(es){es.forEach(function(en){
+      if(!en.isIntersecting)return;cio.unobserve(en.target);
+      var el=en.target,end=parseFloat(el.getAttribute('data-count')),dec=+(el.getAttribute('data-dec')||0),t0=null;
+      function step(t){t0=t0||t;var p=Math.min((t-t0)/1500,1),v=end*(1-Math.pow(1-p,3));
+        el.textContent=v.toLocaleString('en-US',{minimumFractionDigits:dec,maximumFractionDigits:dec});if(p<1)requestAnimationFrame(step)}
+      requestAnimationFrame(step);
+    })},{threshold:.6});
+    document.querySelectorAll('[data-count]').forEach(function(e){cio.observe(e)});
+  }
+})();
+</script>
+</body>
+</html>

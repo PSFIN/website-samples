@@ -1,0 +1,517 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+<title>Navaja Barber Studio</title>
+<meta name="claude:viewport-fit-sides" content="cover">
+<meta name="description" content="Demo website for a fictional Miami barbershop and hair studio.">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Big+Shoulders+Display:wght@700;900&family=Manrope:wght@400;500;600;700&display=swap">
+<style>
+/* Layout: dark oxblood shop interior, oversized condensed type, a barber-pole stripe as the one ornament, brass for prices and actions */
+:root{
+  --bg:#1c0c0f; --surface:#2a1418; --surface-2:#341a1f; --bone:#f2e8da; --muted:#bfa9a0;
+  --brass:#d1a954; --pole:#c23b33; --line:rgba(242,232,218,.14);
+  --display:"Big Shoulders Display", "Oswald", Impact, sans-serif;
+  --body:"Manrope", "Segoe UI", system-ui, sans-serif;
+  color-scheme:dark;
+}
+*{box-sizing:border-box}
+[hidden]{display:none!important}
+html{scroll-behavior:smooth}
+@media (prefers-reduced-motion:reduce){html{scroll-behavior:auto}*{transition:none!important;animation:none!important}}
+body{margin:0;background:var(--bg);color:var(--bone);font:16px/1.6 var(--body);padding-bottom:76px}
+@media (min-width:860px){body{padding-bottom:0}}
+a{color:inherit}
+svg{max-width:100%}
+h1,h2,h3{margin:0;line-height:.95;text-wrap:balance}
+h1,h2{font-family:var(--display);font-weight:900;text-transform:uppercase;letter-spacing:.01em}
+h2{font-size:clamp(2.4rem,6vw,4rem)}
+h3{font-size:1.1rem;font-weight:700;line-height:1.25}
+p{margin:0}
+.wrap{max-width:1160px;margin:0 auto;padding-left:max(16px,env(safe-area-inset-left,0px));padding-right:max(16px,env(safe-area-inset-right,0px))}
+section{padding-block:clamp(56px,8vw,100px)}
+.label{font-size:.76rem;font-weight:700;letter-spacing:.18em;text-transform:uppercase;color:var(--brass)}
+.lede{color:var(--muted);font-size:1.06rem;max-width:56ch}
+.sec-head{display:grid;gap:12px;margin-bottom:36px}
+:focus-visible{outline:3px solid var(--brass);outline-offset:3px;border-radius:4px}
+.pole{height:12px;background:repeating-linear-gradient(-45deg,var(--pole) 0 14px,var(--bone) 14px 28px,#24438f 28px 42px,var(--bone) 42px 56px)}
+
+.demo{background:var(--bone);color:var(--bg);font-size:.82rem;text-align:center}
+.demo .wrap{padding-block:7px}
+.demo b{color:var(--pole)}
+
+body::before{content:"";position:fixed;inset:0 0 auto;height:env(safe-area-inset-top,0px);z-index:10;background:var(--bg)}
+header.top{position:sticky;top:env(safe-area-inset-top,0px);z-index:20;background:rgba(28,12,15,.94);backdrop-filter:blur(8px);border-bottom:1px solid var(--line)}
+header.top .wrap{display:flex;align-items:center;gap:16px;padding-block:12px}
+.logo{font-family:var(--display);font-weight:900;font-size:1.6rem;text-transform:uppercase;text-decoration:none;letter-spacing:.04em;line-height:1;display:flex;align-items:center;gap:10px}
+.logo i{display:block;width:10px;height:30px;border-radius:5px;background:repeating-linear-gradient(-45deg,var(--pole) 0 4px,var(--bone) 4px 8px,#24438f 8px 12px,var(--bone) 12px 16px)}
+nav.main{display:none;gap:24px;margin-left:auto;font-size:.92rem;font-weight:600}
+nav.main a{text-decoration:none;color:var(--muted)}
+nav.main a:hover{color:var(--bone)}
+@media (min-width:960px){nav.main{display:flex}}
+.lang{display:inline-flex;border:1px solid var(--line);border-radius:6px;padding:3px;margin-left:auto}
+@media (min-width:960px){.lang{margin-left:0}}
+.lang button{border:0;background:none;color:var(--muted);font:700 .8rem var(--body);padding:5px 10px;border-radius:4px;cursor:pointer}
+.lang button[aria-pressed="true"]{background:var(--bone);color:var(--bg)}
+.btn{display:inline-flex;align-items:center;justify-content:center;gap:8px;padding:14px 24px;border-radius:6px;font:800 .95rem var(--body);letter-spacing:.06em;text-transform:uppercase;text-decoration:none;border:2px solid transparent;cursor:pointer;transition:background .15s,color .15s}
+.btn-brass{background:var(--brass);color:#1c0c0f}
+.btn-brass:hover{background:#e2bd6b}
+.btn-line{border-color:var(--bone);color:var(--bone);background:transparent}
+.btn-line:hover{background:var(--bone);color:var(--bg)}
+.btn-wa{background:#1f9d55;color:#fff}
+.hdr-book{display:none}
+@media (min-width:640px){.hdr-book{display:inline-flex;padding:9px 16px;font-size:.82rem}}
+
+/* hero */
+.hero{padding-block:clamp(44px,7vw,90px)}
+.hero .wrap{display:grid;gap:40px;align-items:center}
+@media (min-width:920px){.hero .wrap{grid-template-columns:1.25fr 1fr}}
+.hero h1{font-size:clamp(3.4rem,11vw,7.4rem);line-height:.86}
+.hero h1 .b{color:var(--brass)}
+.hero .lede{margin-top:22px}
+.cta-row{display:flex;flex-wrap:wrap;gap:12px;margin-top:28px}
+.hero-meta{display:flex;flex-wrap:wrap;gap:10px 28px;margin-top:28px;font-size:.92rem;color:var(--muted)}
+.hero-meta strong{color:var(--bone);user-select:all}
+.chair{background:var(--surface);border-radius:10px;padding:24px;border:1px solid var(--line);display:grid;gap:16px}
+.chair .now{display:flex;align-items:center;gap:10px;font-weight:700}
+.chair .now i{width:10px;height:10px;border-radius:50%;background:#4ade80;box-shadow:0 0 0 4px rgba(74,222,128,.2)}
+.chair ul{margin:0;padding:0;list-style:none;display:grid;gap:10px}
+.chair li{display:flex;justify-content:space-between;gap:12px;padding-bottom:10px;border-bottom:1px solid var(--line);font-size:.95rem}
+.chair li span:last-child{color:var(--brass);font-weight:700;font-variant-numeric:tabular-nums}
+.chair small{color:var(--muted);font-size:.8rem}
+
+/* services */
+.svc{background:var(--surface)}
+.price-cols{display:grid;gap:8px 56px}
+@media (min-width:820px){.price-cols{grid-template-columns:1fr 1fr}}
+.pgroup h3{font-family:var(--display);font-size:1.6rem;text-transform:uppercase;letter-spacing:.04em;color:var(--brass);margin:10px 0 6px}
+.prow{display:grid;grid-template-columns:1fr auto;gap:2px 16px;padding:14px 0;border-bottom:1px solid var(--line)}
+.prow b{font-weight:700;font-size:1.04rem}
+.prow .p{font-family:var(--display);font-weight:700;font-size:1.5rem;color:var(--bone);font-variant-numeric:tabular-nums;grid-row:span 2;align-self:center}
+.prow small{color:var(--muted);font-size:.88rem}
+
+/* team */
+.team{display:grid;gap:16px;grid-template-columns:repeat(auto-fill,minmax(min(100%,240px),1fr))}
+.barber{background:var(--surface);border:1px solid var(--line);border-radius:10px;padding:22px;display:grid;gap:12px;align-content:start}
+.avatar{width:64px;height:64px;border-radius:50%;display:grid;place-items:center;font-family:var(--display);font-weight:900;font-size:1.6rem;color:var(--bg);background:var(--brass)}
+.barber:nth-child(2) .avatar{background:#e7d7c1}
+.barber:nth-child(3) .avatar{background:#d98a7e}
+.barber:nth-child(4) .avatar{background:#a9b7d9}
+.barber p{color:var(--muted);font-size:.93rem}
+.barber .ig{font-size:.86rem;color:var(--brass);font-weight:600}
+
+/* styles gallery */
+.styles{display:grid;gap:14px;grid-template-columns:repeat(2,minmax(0,1fr))}
+@media (min-width:820px){.styles{grid-template-columns:repeat(4,minmax(0,1fr))}}
+.styles figure{margin:0;background:var(--surface-2);border-radius:10px;overflow:hidden}
+.styles svg{display:block;width:100%;height:auto;aspect-ratio:4/5}
+.styles figcaption{padding:12px 14px;font-weight:700;display:flex;justify-content:space-between;gap:8px;flex-wrap:wrap}
+.styles figcaption span{color:var(--muted);font-weight:500;font-size:.88rem}
+.note{margin-top:18px;font-size:.85rem;color:var(--muted)}
+
+/* booking */
+.book{background:var(--bone);color:var(--bg)}
+.book .label{color:var(--pole)}
+.book .lede{color:#5c4a46}
+.book .wrap{display:grid;gap:36px}
+@media (min-width:920px){.book .wrap{grid-template-columns:1fr 1.3fr}}
+form{background:#fff;border-radius:10px;padding:clamp(20px,3.5vw,32px);display:grid;gap:18px;grid-template-columns:1fr 1fr;color:var(--bg);color-scheme:light}
+form .full{grid-column:1/-1}
+@media (max-width:560px){form{grid-template-columns:1fr}}
+label,.fs-label{display:grid;gap:6px;font-size:.86rem;font-weight:700}
+fieldset{border:0;margin:0;padding:0;min-width:0}
+legend{font-size:.86rem;font-weight:700;padding:0;margin-bottom:8px}
+input,select,textarea{font:inherit;font-weight:400;font-size:1rem;padding:12px 14px;border:1.5px solid #dccfc0;border-radius:6px;background:#faf6f0;color:var(--bg);width:100%;min-width:0}
+input:focus,select:focus{outline:none;border-color:var(--pole);background:#fff}
+.slots{display:flex;flex-wrap:wrap;gap:8px}
+.slots button{font:700 .9rem var(--body);padding:9px 14px;border-radius:6px;border:1.5px solid #dccfc0;background:#faf6f0;color:var(--bg);cursor:pointer;font-variant-numeric:tabular-nums}
+.slots button[aria-pressed="true"]{background:var(--bg);border-color:var(--bg);color:var(--bone)}
+.slots button:disabled{opacity:.35;text-decoration:line-through;cursor:not-allowed}
+.form-note{grid-column:1/-1;background:#f3e6c9;border-radius:6px;padding:12px 14px;font-size:.92rem}
+.fine{grid-column:1/-1;font-size:.8rem;color:#7a6964}
+.book .contact{display:grid;gap:12px;margin-top:24px}
+.book .num{font-family:var(--display);font-weight:900;font-size:2rem;user-select:all}
+.book .btn-line{border-color:var(--bg);color:var(--bg)}
+.book .btn-line:hover{background:var(--bg);color:var(--bone)}
+
+/* reviews */
+.sample-badge{justify-self:start;font-size:.72rem;font-weight:700;letter-spacing:.12em;text-transform:uppercase;padding:4px 10px;border-radius:4px;border:1px dashed var(--muted);color:var(--muted)}
+.rev-grid{display:grid;gap:16px;grid-template-columns:repeat(auto-fit,minmax(min(100%,280px),1fr))}
+.rev{margin:0;border-left:3px solid var(--brass);padding:4px 0 4px 20px;display:grid;gap:12px;align-content:start}
+.rev blockquote{margin:0;font-size:1.08rem}
+.stars{color:var(--brass);letter-spacing:2px}
+.rev figcaption{color:var(--muted);font-size:.88rem}
+.rev figcaption b{color:var(--bone)}
+
+/* location */
+.loc .wrap{display:grid;gap:32px}
+@media (min-width:900px){.loc .wrap{grid-template-columns:1fr 1.2fr;align-items:start}}
+.hours{width:100%;border-collapse:collapse;margin-top:20px;font-variant-numeric:tabular-nums}
+.hours td{padding:9px 0;border-bottom:1px solid var(--line)}
+.hours td:last-child{text-align:right;color:var(--muted)}
+.map{position:relative;border-radius:10px;overflow:hidden;border:1px solid var(--line)}
+.map svg{display:block;width:100%;height:auto}
+.map-note{position:absolute;left:12px;right:12px;bottom:12px;background:rgba(28,12,15,.92);border-radius:8px;padding:10px 12px;font-size:.85rem;display:flex;flex-wrap:wrap;gap:8px;justify-content:space-between}
+.map-note a{font-weight:700;color:var(--brass)}
+
+footer{border-top:1px solid var(--line);color:var(--muted);font-size:.9rem}
+footer .wrap{padding-block:32px;display:grid;gap:14px}
+@media (min-width:760px){footer .wrap{grid-template-columns:1fr auto;align-items:end}}
+
+.mbar{position:fixed;left:0;right:0;bottom:0;z-index:30;display:grid;grid-template-columns:1fr 1fr 1fr;gap:8px;background:rgba(28,12,15,.97);border-top:1px solid var(--line);padding-top:10px;padding-bottom:calc(10px + env(safe-area-inset-bottom,0px));padding-left:max(12px,env(safe-area-inset-left,0px));padding-right:max(12px,env(safe-area-inset-right,0px))}
+.mbar .btn{padding:12px 6px;font-size:.8rem}
+@media (min-width:860px){.mbar{display:none}}
+
+/* ---- motion layer ---- */
+@keyframes rise{from{opacity:0;transform:translateY(34px)}to{opacity:1;transform:none}}
+@keyframes marq{to{transform:translateX(-50%)}}
+@keyframes grow{to{transform:scaleX(1)}}
+@keyframes pulse{0%{box-shadow:0 0 0 0 var(--pulse,rgba(31,157,85,.5))}70%{box-shadow:0 0 0 16px transparent}100%{box-shadow:0 0 0 0 transparent}}
+@keyframes shine{to{background-position:200% center}}
+.progress{position:fixed;left:0;right:0;top:env(safe-area-inset-top,0px);height:3px;background:linear-gradient(90deg,#c23b33,#d1a954);transform-origin:0 50%;transform:scaleX(0);z-index:60;pointer-events:none}
+@supports (animation-timeline:scroll()){.progress{animation:grow linear both;animation-timeline:scroll(root)}}
+@supports not (animation-timeline:scroll()){.progress{display:none}}
+.btn{position:relative;overflow:hidden;isolation:isolate}
+.btn::after{content:"";position:absolute;inset:0;background:linear-gradient(115deg,transparent 30%,rgba(255,255,255,.45) 50%,transparent 70%);transform:translateX(-130%);transition:transform .7s;z-index:-1;pointer-events:none}
+.btn:hover::after{transform:translateX(130%)}
+.marquee{overflow:hidden;white-space:nowrap;display:flex}
+.marquee .track{display:flex;flex:none;align-items:center;animation:marq 30s linear infinite}
+.marquee:hover .track{animation-play-state:paused}
+.mbar .btn-wa{--pulse:rgba(31,157,85,.55);animation:pulse 2.4s 2s infinite}
+@supports (animation-timeline:view()){
+  .sec-head,.prow,.barber,.styles figure,.rev,.book form,.loc .map,.hours tr{animation:rise linear both;animation-timeline:view();animation-range:entry 0% entry 70%}
+}
+
+@property --a{syntax:'<angle>';inherits:false;initial-value:0deg}
+.pole{animation:poleRun 1.4s linear infinite}
+@keyframes poleRun{to{background-position:79.2px 0}}
+.logo i{animation:poleUp 1s linear infinite}
+@keyframes poleUp{to{background-position:0 -22.63px}}
+.hero{position:relative;overflow:hidden;background:radial-gradient(560px circle at var(--mx,78%) var(--my,30%),rgba(209,169,84,.18),transparent 65%)}
+.hero h1>span{display:inline-block;animation:wipe 1s cubic-bezier(.7,0,.2,1) both}
+.hero h1>span.b{animation-delay:.3s}
+@keyframes wipe{from{clip-path:inset(-20% 100% -20% 0);transform:translateX(-14px)}to{clip-path:inset(-20% -5% -20% 0);transform:none}}
+.razor{display:block;height:4px;width:180px;background:linear-gradient(90deg,var(--brass),var(--pole) 60%,transparent);margin-top:22px;transform-origin:left;animation:slash .7s 1s cubic-bezier(.7,0,.2,1) both}
+@keyframes slash{from{transform:scaleX(0)}to{transform:scaleX(1)}}
+.hero .wrap>div:first-child>.label,.hero .lede,.hero .cta-row,.hero-meta{animation:rise .9s .5s cubic-bezier(.2,.7,.2,1) both}
+.hero .wrap>div:first-child>.label{animation-delay:0s}
+.hero .cta-row{animation-delay:.65s}.hero-meta{animation-delay:.8s}
+.chair{border:2px solid transparent;background:linear-gradient(var(--surface),var(--surface)) padding-box,conic-gradient(from var(--a),var(--brass),transparent 22%,transparent 48%,var(--pole) 68%,transparent 86%,var(--brass)) border-box;animation:rise 1s .6s cubic-bezier(.2,.7,.2,1) both,spin 6s linear infinite}
+@keyframes spin{to{--a:360deg}}
+.chair .now i{animation:pulseg 1.8s infinite}
+@keyframes pulseg{0%{box-shadow:0 0 0 0 rgba(74,222,128,.6)}70%{box-shadow:0 0 0 10px rgba(74,222,128,0)}100%{box-shadow:0 0 0 0 rgba(74,222,128,0)}}
+.hero .btn-brass{--pulse:rgba(209,169,84,.55);animation:pulse 2.2s 1.6s infinite}
+.marquee.outline{padding-block:26px;border-block:1px solid var(--line);font-family:var(--display);font-weight:900;text-transform:uppercase;font-size:clamp(3rem,9vw,6.5rem);line-height:1}
+.marquee.outline .track{animation-duration:34s}
+.marquee.outline .track span{padding-inline:28px;color:transparent;-webkit-text-stroke:1.5px var(--bone)}
+.marquee.outline .track span:nth-child(4n+1){color:var(--brass);-webkit-text-stroke:0}
+.marquee.outline .track i{font-style:normal;color:var(--pole);font-size:.45em}
+.marquee.rev-dir .track{animation-direction:reverse;animation-duration:40s}
+.prow{transition:padding .3s,background .3s}
+.prow:hover{padding-left:14px;background:linear-gradient(90deg,rgba(209,169,84,.16),transparent 70%)}
+.prow .p{transition:color .3s,scale .3s}.prow:hover .p{color:var(--brass);scale:1.12}
+.barber{transition:translate .35s,border-color .35s}.barber:hover{translate:0 -8px;border-color:var(--brass)}
+.avatar{transition:rotate .7s cubic-bezier(.3,1.4,.5,1),scale .4s}.barber:hover .avatar{rotate:360deg;scale:1.1}
+.styles figure{transition:translate .35s,box-shadow .35s}.styles svg{transition:transform .6s}
+.styles figure:hover{translate:0 -6px;box-shadow:0 0 0 2px var(--brass),0 24px 40px -20px rgba(0,0,0,.7)}
+.styles figure:hover svg{transform:scale(1.08)}
+.slots button{transition:translate .15s,background .2s}.slots button:not(:disabled):hover{translate:0 -2px}
+</style>
+</head>
+<body>
+<div class="progress" aria-hidden="true"></div>
+
+<div class="demo"><div class="wrap"><b data-es="Sitio de muestra">Sample website</b> · <span data-es="Negocio ficticio creado para mostrar cómo podría verse su sitio web.">Fictional business, built to show what your website could look like.</span></div></div>
+
+<header class="top">
+  <div class="wrap">
+    <a class="logo" href="#top"><i aria-hidden="true"></i>Navaja</a>
+    <nav class="main" aria-label="Main">
+      <a href="#services" data-es="Precios">Prices</a>
+      <a href="#team" data-es="Barberos">Barbers</a>
+      <a href="#styles" data-es="Estilos">Styles</a>
+      <a href="#location" data-es="Ubicación">Location</a>
+    </nav>
+    <div class="lang" role="group" aria-label="Language">
+      <button type="button" data-lang="en" aria-pressed="true">EN</button>
+      <button type="button" data-lang="es" aria-pressed="false">ES</button>
+    </div>
+    <a class="btn btn-brass hdr-book" href="#book" data-es="Reservar">Book</a>
+  </div>
+</header>
+<div class="pole" aria-hidden="true"></div>
+
+<main id="top">
+<section class="hero">
+  <div class="wrap">
+    <div>
+      <p class="label" data-es="Barbería y estudio · Wynwood, Miami">Barbershop &amp; studio · Wynwood, Miami</p>
+      <h1 style="margin-top:16px"><span data-es="Fades limpios.">Clean fades.</span><br><span class="b" data-es="Líneas exactas.">Sharp lines.</span></h1>
+      <span class="razor" aria-hidden="true"></span>
+      <p class="lede" data-es="Cortes, barba con toalla caliente, color y peinados para él y para ella. Reserve en línea en 30 segundos o venga sin cita.">Cuts, hot-towel beard work, color and styling for him and her. Book online in 30 seconds or walk right in.</p>
+      <div class="cta-row">
+        <a class="btn btn-brass" href="#book" data-es="Reservar mi silla">Book my chair</a>
+        <a class="btn btn-wa" href="https://wa.me/13055550163" target="_blank" rel="noopener">WhatsApp</a>
+      </div>
+      <div class="hero-meta">
+        <span><span data-es="Llame:">Call:</span> <strong>(305) 555-0163</strong></span>
+        <span data-es="Mar–Dom · Cerrado los lunes">Tue–Sun · Closed Mondays</span>
+      </div>
+    </div>
+    <aside class="chair" aria-label="Today at the shop">
+      <p class="now"><i aria-hidden="true"></i><span data-es="Hoy en la barbería">Today at the shop</span></p>
+      <ul>
+        <li><span data-es="Espera sin cita">Walk-in wait</span><span data-es="~20 min">~20 min</span></li>
+        <li><span data-es="Próximo turno libre">Next open chair</span><span>2:40 p.m.</span></li>
+        <li><span data-es="Barberos trabajando">Barbers on the floor</span><span>4</span></li>
+      </ul>
+      <small data-es="Ejemplo: en su sitio real esto se conecta con su sistema de citas.">Example: on your real site this connects to your booking system.</small>
+    </aside>
+  </div>
+</section>
+
+<div class="marquee outline" aria-hidden="true"><div class="track"><span data-es="Fades">Fades</span><i>✦</i><span data-es="Afeitado">Shaves</span><i>✦</i><span data-es="Barbas">Beards</span><i>✦</i><span data-es="Color">Color</span><i>✦</i><span data-es="Diseños">Designs</span><i>✦</i><span data-es="Niños">Kids</span><i>✦</i><span data-es="Fades">Fades</span><i>✦</i><span data-es="Afeitado">Shaves</span><i>✦</i><span data-es="Barbas">Beards</span><i>✦</i><span data-es="Color">Color</span><i>✦</i><span data-es="Diseños">Designs</span><i>✦</i><span data-es="Niños">Kids</span><i>✦</i></div></div>
+
+<section id="services" class="svc">
+  <div class="wrap">
+    <div class="sec-head">
+      <p class="label" data-es="Servicios y precios">Services &amp; prices</p>
+      <h2 data-es="La lista de precios">The price list</h2>
+    </div>
+    <div class="price-cols">
+      <div class="pgroup">
+        <h3 data-es="Cortes">Cuts</h3>
+        <div class="prow"><b data-es="Corte clásico">Classic cut</b><span class="p">$35</span><small data-es="Tijera y máquina · 45 min">Scissor &amp; clipper · 45 min</small></div>
+        <div class="prow"><b data-es="Skin fade">Skin fade</b><span class="p">$40</span><small data-es="Degradado a piel con navaja · 50 min">Faded to skin, razor finish · 50 min</small></div>
+        <div class="prow"><b data-es="Corte + barba">Cut + beard</b><span class="p">$55</span><small data-es="El combo más pedido · 70 min">Most-booked combo · 70 min</small></div>
+        <div class="prow"><b data-es="Niños (menores de 12)">Kids (under 12)</b><span class="p">$25</span><small>30 min</small></div>
+      </div>
+      <div class="pgroup">
+        <h3 data-es="Barba y estudio">Beard &amp; studio</h3>
+        <div class="prow"><b data-es="Afeitado con toalla caliente">Hot-towel shave</b><span class="p">$35</span><small data-es="Navaja recta, aceite y bálsamo · 40 min">Straight razor, oil and balm · 40 min</small></div>
+        <div class="prow"><b data-es="Arreglo de barba">Beard shape-up</b><span class="p">$20</span><small>20 min</small></div>
+        <div class="prow"><b data-es="Corte y peinado de dama">Women's cut &amp; style</b><span class="p">$55</span><small data-es="Lavado, corte y secado · 60 min">Wash, cut and blowout · 60 min</small></div>
+        <div class="prow"><b data-es="Color o mechas">Color or highlights</b><span class="p" data-es="desde $65">from $65</span><small data-es="Consulta incluida · 90+ min">Consultation included · 90+ min</small></div>
+      </div>
+    </div>
+    <p class="note" data-es="Precios de ejemplo para este sitio de muestra.">Example prices for this sample site.</p>
+  </div>
+</section>
+
+<section id="team">
+  <div class="wrap">
+    <div class="sec-head">
+      <p class="label" data-es="El equipo">The crew</p>
+      <h2 data-es="Escoja a su barbero">Pick your barber</h2>
+    </div>
+    <div class="team">
+      <article class="barber"><div class="avatar" aria-hidden="true">RM</div><h3>Rafa M.</h3><p data-es="Fades y diseños. 12 años detrás de la silla.">Fades and hair designs. 12 years behind the chair.</p><span class="ig">@rafa.sample</span></article>
+      <article class="barber"><div class="avatar" aria-hidden="true">DL</div><h3>Dani L.</h3><p data-es="Color, mechas y cortes de dama.">Color, highlights and women's cuts.</p><span class="ig">@dani.sample</span></article>
+      <article class="barber"><div class="avatar" aria-hidden="true">JT</div><h3>Javi T.</h3><p data-es="Barbas y afeitado con navaja recta.">Beards and straight-razor shaves.</p><span class="ig">@javi.sample</span></article>
+      <article class="barber"><div class="avatar" aria-hidden="true">KO</div><h3>Kel O.</h3><p data-es="Texturas, rizos y trenzas.">Textured hair, curls and braids.</p><span class="ig">@kel.sample</span></article>
+    </div>
+  </div>
+</section>
+
+<section id="styles" style="padding-top:0">
+  <div class="wrap">
+    <div class="sec-head">
+      <p class="label" data-es="Galería">Gallery</p>
+      <h2 data-es="Estilos de la semana">This week's cuts</h2>
+    </div>
+    <div class="styles">
+      <figure>
+        <svg viewBox="0 0 200 250" aria-hidden="true"><rect width="200" height="250" fill="#341a1f"/><path d="M60 250c0-40 18-60 40-64s40 24 40 64z" fill="#2a1418"/><ellipse cx="100" cy="128" rx="44" ry="54" fill="#b98463"/><path d="M58 112c0-34 18-52 42-52s42 18 42 52c-6-6-10-14-12-22-20 4-44 2-62-8-4 10-6 20-10 30z" fill="#120708"/><path d="M58 112c2 10 4 18 6 22M142 112c-2 10-4 18-6 22" stroke="#5a3a35" stroke-width="5"/></svg>
+        <figcaption>Skin fade <span>Rafa</span></figcaption>
+      </figure>
+      <figure>
+        <svg viewBox="0 0 200 250" aria-hidden="true"><rect width="200" height="250" fill="#2a1418"/><path d="M60 250c0-40 18-60 40-64s40 24 40 64z" fill="#341a1f"/><ellipse cx="100" cy="134" rx="42" ry="52" fill="#d8a985"/><path d="M56 118c-6-50 30-76 70-62 22 8 26 30 18 52-8-14-24-20-44-18-22 2-36 12-44 28z" fill="#3b2216"/></svg>
+        <figcaption data-es="Pompadour">Pompadour <span>Javi</span></figcaption>
+      </figure>
+      <figure>
+        <svg viewBox="0 0 200 250" aria-hidden="true"><rect width="200" height="250" fill="#341a1f"/><path d="M60 250c0-40 18-60 40-64s40 24 40 64z" fill="#2a1418"/><ellipse cx="100" cy="130" rx="42" ry="52" fill="#8c5a3f"/><g fill="#1a0c0a"><circle cx="66" cy="96" r="16"/><circle cx="86" cy="80" r="18"/><circle cx="112" cy="78" r="18"/><circle cx="134" cy="92" r="16"/><circle cx="60" cy="116" r="12"/><circle cx="140" cy="114" r="12"/></g></svg>
+        <figcaption data-es="Rizos con forma">Shaped curls <span>Kel</span></figcaption>
+      </figure>
+      <figure>
+        <svg viewBox="0 0 200 250" aria-hidden="true"><rect width="200" height="250" fill="#2a1418"/><path d="M60 250c0-40 18-60 40-64s40 24 40 64z" fill="#341a1f"/><ellipse cx="100" cy="132" rx="40" ry="50" fill="#e2b896"/><path d="M58 128c-8-48 18-74 50-72 30 2 46 28 36 70-2-24-14-40-30-42-6 18-30 30-56 44z" fill="#8a4b2a"/><path d="M56 128c-2 30 4 58 10 74M144 126c4 30 0 56-8 72" stroke="#8a4b2a" stroke-width="12" stroke-linecap="round" fill="none"/></svg>
+        <figcaption data-es="Bob con mechas">Bob with highlights <span>Dani</span></figcaption>
+      </figure>
+    </div>
+    <p class="note" data-es="Ilustraciones de ejemplo. Su sitio real mostrará fotos de los trabajos de su equipo.">Illustrations for this sample. Your real site shows photos of your team's actual work.</p>
+  </div>
+</section>
+
+<div class="marquee outline rev-dir" aria-hidden="true" style="font-size:clamp(2rem,6vw,4rem)"><div class="track"><span>Walk-ins welcome</span><i>✦</i><span>Sin cita</span><i>✦</i><span>Book online</span><i>✦</i><span>Reserve en línea</span><i>✦</i><span>Walk-ins welcome</span><i>✦</i><span>Sin cita</span><i>✦</i><span>Book online</span><i>✦</i><span>Reserve en línea</span><i>✦</i></div></div>
+
+<section id="book" class="book">
+  <div class="wrap">
+    <div>
+      <p class="label" data-es="Reservas">Booking</p>
+      <h2 style="margin-top:12px" data-es="Reserve su silla">Book your chair</h2>
+      <p class="lede" style="margin-top:14px" data-es="Escoja servicio, barbero y hora. Le enviamos un recordatorio por texto el día antes.">Choose a service, barber and time. We text you a reminder the day before.</p>
+      <div class="contact">
+        <span class="num">(305) 555-0163</span>
+        <div style="display:flex;flex-wrap:wrap;gap:10px">
+          <a class="btn btn-line" style="padding:9px 16px" href="tel:+13055550163" data-es="Llamar">Call</a>
+          <a class="btn btn-wa" style="padding:9px 16px" href="https://wa.me/13055550163" target="_blank" rel="noopener">WhatsApp</a>
+        </div>
+      </div>
+    </div>
+    <form data-demo novalidate>
+      <label><span data-es="Servicio">Service</span>
+        <select id="b-service" name="service">
+          <option data-es="Skin fade — $40">Skin fade — $40</option>
+          <option data-es="Corte clásico — $35">Classic cut — $35</option>
+          <option data-es="Corte + barba — $55">Cut + beard — $55</option>
+          <option data-es="Afeitado con toalla caliente — $35">Hot-towel shave — $35</option>
+          <option data-es="Corte y peinado de dama — $55">Women's cut &amp; style — $55</option>
+        </select>
+      </label>
+      <label><span data-es="Barbero">Barber</span>
+        <select id="b-barber" name="barber">
+          <option data-es="El primero disponible">First available</option>
+          <option>Rafa M.</option><option>Dani L.</option><option>Javi T.</option><option>Kel O.</option>
+        </select>
+      </label>
+      <fieldset class="full">
+        <legend data-es="Día">Day</legend>
+        <div class="slots" data-group="day">
+          <button type="button" aria-pressed="true" data-es="Hoy">Today</button>
+          <button type="button" aria-pressed="false" data-es="Mañana">Tomorrow</button>
+          <button type="button" aria-pressed="false" data-es="Jueves">Thursday</button>
+          <button type="button" aria-pressed="false" data-es="Viernes">Friday</button>
+          <button type="button" aria-pressed="false" data-es="Sábado">Saturday</button>
+        </div>
+      </fieldset>
+      <fieldset class="full">
+        <legend data-es="Hora">Time</legend>
+        <div class="slots" data-group="time">
+          <button type="button" aria-pressed="false" disabled>10:00</button>
+          <button type="button" aria-pressed="false" disabled>11:20</button>
+          <button type="button" aria-pressed="true">2:40</button>
+          <button type="button" aria-pressed="false">3:30</button>
+          <button type="button" aria-pressed="false">4:20</button>
+          <button type="button" aria-pressed="false">5:40</button>
+          <button type="button" aria-pressed="false">6:30</button>
+        </div>
+      </fieldset>
+      <label><span data-es="Nombre">Name</span><input id="b-name" name="name" autocomplete="name" placeholder="Carlos Rivera"></label>
+      <label><span data-es="Teléfono">Phone</span><input id="b-phone" name="phone" type="tel" autocomplete="tel" placeholder="(305) 555-0100"></label>
+      <button class="btn btn-brass full" type="submit" data-es="Confirmar cita">Confirm appointment</button>
+      <p class="form-note" role="status" hidden data-es="Este es un formulario de demostración, no se reservó nada. En su sitio real, la cita entra directo a su agenda y el cliente recibe confirmación.">This is a demo form, so nothing was booked. On your real site, the appointment lands in your calendar and the client gets a confirmation.</p>
+      <p class="fine" data-es="Formulario de demostración: no guarda ni envía datos.">Demo form: no data is stored or sent.</p>
+    </form>
+  </div>
+</section>
+
+<section id="reviews">
+  <div class="wrap">
+    <div class="sec-head">
+      <span class="sample-badge" data-es="Reseñas de ejemplo">Sample reviews</span>
+      <h2 data-es="Lo que dicen en la silla">Word from the chair</h2>
+      <p class="lede" data-es="Texto de ejemplo. Su sitio real mostrará sus reseñas de Google.">Placeholder text. Your real site will show your actual Google reviews.</p>
+    </div>
+    <div class="rev-grid">
+      <figure class="rev"><div class="stars" aria-label="5 out of 5 stars">★★★★★</div><blockquote data-es="Reservé en línea, entré a la hora exacta y Rafa me dejó el mejor fade que he tenido.">Booked online, sat down right on time, and Rafa gave me the cleanest fade I've had.</blockquote><figcaption><b>Carlos R.</b> · Wynwood</figcaption></figure>
+      <figure class="rev"><div class="stars" aria-label="5 out of 5 stars">★★★★★</div><blockquote data-es="Dani entendió exactamente el color que quería. El ambiente es relajado y la música buena.">Dani got my color exactly right. Relaxed vibe and good music.</blockquote><figcaption><b>Natalia V.</b> · Edgewater</figcaption></figure>
+      <figure class="rev"><div class="stars" aria-label="5 out of 5 stars">★★★★★</div><blockquote data-es="El afeitado con toalla caliente vale cada centavo. Mi hijo también se corta aquí.">The hot-towel shave is worth every dollar. My son gets his cuts here too.</blockquote><figcaption><b>Marcus J.</b> · Midtown</figcaption></figure>
+    </div>
+  </div>
+</section>
+
+<section id="location" class="loc" style="padding-top:0">
+  <div class="wrap">
+    <div>
+      <p class="label" data-es="Ubicación">Location</p>
+      <h2 style="margin-top:12px">Wynwood</h2>
+      <p class="lede" style="margin-top:14px" data-es="NW 2nd Ave, Miami (dirección de ejemplo). Parqueo en la calle y garaje a una cuadra.">NW 2nd Ave, Miami (sample address). Street parking and a garage one block over.</p>
+      <table class="hours">
+        <tbody>
+          <tr><td data-es="Martes a viernes">Tuesday to Friday</td><td>10:00 a.m. – 8:00 p.m.</td></tr>
+          <tr><td data-es="Sábado">Saturday</td><td>9:00 a.m. – 7:00 p.m.</td></tr>
+          <tr><td data-es="Domingo">Sunday</td><td>10:00 a.m. – 4:00 p.m.</td></tr>
+          <tr><td data-es="Lunes">Monday</td><td data-es="Cerrado">Closed</td></tr>
+        </tbody>
+      </table>
+    </div>
+    <div class="map">
+      <svg viewBox="0 0 600 400" role="img" aria-label="Illustrated street map around the shop">
+        <rect width="600" height="400" fill="#2a1418"/>
+        <g fill="#341a1f"><rect x="20" y="20" width="160" height="150" rx="4"/><rect x="214" y="20" width="160" height="150" rx="4"/><rect x="408" y="20" width="172" height="150" rx="4"/><rect x="20" y="214" width="160" height="166" rx="4"/><rect x="214" y="214" width="160" height="166" rx="4"/><rect x="408" y="214" width="172" height="166" rx="4"/></g>
+        <g fill="#4a2a30"><rect x="0" y="176" width="600" height="32"/><rect x="186" y="0" width="22" height="400"/><rect x="380" y="0" width="22" height="400"/></g>
+        <text x="30" y="197" font-family="Manrope, system-ui, sans-serif" font-size="13" font-weight="700" fill="#bfa9a0">NW 25th St</text>
+        <text x="392" y="300" font-family="Manrope, system-ui, sans-serif" font-size="13" font-weight="700" fill="#bfa9a0" transform="rotate(-90 392 300)">NW 2nd Ave</text>
+        <g transform="translate(300,150)"><path d="M0 0c-16-20-24-30-24-42a24 24 0 0 1 48 0c0 12-8 22-24 42z" fill="#d1a954" stroke="#1c0c0f" stroke-width="3"/><circle cy="-42" r="8" fill="#1c0c0f"/></g>
+        <rect x="246" y="60" width="108" height="26" rx="4" fill="#f2e8da"/><text x="300" y="78" text-anchor="middle" font-family="Manrope, system-ui, sans-serif" font-size="13" font-weight="800" fill="#1c0c0f">NAVAJA</text>
+        <g transform="translate(470,280)"><rect x="-26" y="-18" width="52" height="36" rx="4" fill="#24438f"/><text y="6" text-anchor="middle" font-family="Manrope, system-ui, sans-serif" font-size="16" font-weight="800" fill="#fff">P</text></g>
+      </svg>
+      <div class="map-note"><span data-es="Aquí va el mapa de Google en su sitio real">Live Google Map goes here on your real site</span><a href="https://www.google.com/maps/search/?api=1&amp;query=Wynwood%2C+Miami%2C+FL" target="_blank" rel="noopener" data-es="Cómo llegar">Get directions</a></div>
+    </div>
+  </div>
+</section>
+</main>
+
+<div class="pole" aria-hidden="true"></div>
+<footer>
+  <div class="wrap">
+    <div>
+      <a class="logo" href="#top"><i aria-hidden="true"></i>Navaja</a>
+      <p style="margin-top:10px" data-es="Negocio ficticio. Nombre, barberos, precios, reseñas y teléfono son ejemplos.">Fictional business. Name, barbers, prices, reviews and phone number are examples.</p>
+    </div>
+    <p>© 2026 Navaja Barber Studio (sample)</p>
+  </div>
+</footer>
+
+<div class="mbar">
+  <a class="btn btn-brass" href="#book" data-es="Reservar">Book</a>
+  <a class="btn btn-line" href="tel:+13055550163" data-es="Llamar">Call</a>
+  <a class="btn btn-wa" href="https://wa.me/13055550163" target="_blank" rel="noopener">WhatsApp</a>
+</div>
+
+<script>
+(function(){
+  var tx=[].slice.call(document.querySelectorAll('[data-es]'));
+  tx.forEach(function(e){e.setAttribute('data-en',e.innerHTML)});
+  var ph=[].slice.call(document.querySelectorAll('[data-es-ph]'));
+  ph.forEach(function(e){e.setAttribute('data-en-ph',e.placeholder)});
+  function setLang(l){
+    document.documentElement.lang=l;
+    tx.forEach(function(e){e.innerHTML=e.getAttribute(l==='es'?'data-es':'data-en')});
+    ph.forEach(function(e){e.placeholder=e.getAttribute(l==='es'?'data-es-ph':'data-en-ph')});
+    document.querySelectorAll('[data-lang]').forEach(function(b){b.setAttribute('aria-pressed',String(b.getAttribute('data-lang')===l))});
+    try{localStorage.setItem('demo-lang',l)}catch(err){}
+  }
+  document.querySelectorAll('[data-lang]').forEach(function(b){b.addEventListener('click',function(){setLang(b.getAttribute('data-lang'))})});
+  var saved='en';try{saved=localStorage.getItem('demo-lang')||'en'}catch(err){}
+  if(saved==='es')setLang('es');
+  document.querySelectorAll('.slots').forEach(function(g){
+    g.addEventListener('click',function(e){
+      var b=e.target.closest('button');if(!b||b.disabled)return;
+      g.querySelectorAll('button').forEach(function(o){o.setAttribute('aria-pressed',String(o===b))});
+    });
+  });
+  document.querySelectorAll('form[data-demo]').forEach(function(f){
+    f.addEventListener('submit',function(e){e.preventDefault();var n=f.querySelector('.form-note');n.hidden=false;n.setAttribute('tabindex','-1');n.focus()});
+  });
+
+  var reduce=window.matchMedia&&matchMedia('(prefers-reduced-motion: reduce)').matches;
+  if(!reduce&&'IntersectionObserver' in window){
+    var cio=new IntersectionObserver(function(es){es.forEach(function(en){
+      if(!en.isIntersecting)return;cio.unobserve(en.target);
+      var el=en.target,end=parseFloat(el.getAttribute('data-count')),dec=+(el.getAttribute('data-dec')||0),t0=null;
+      function step(t){t0=t0||t;var p=Math.min((t-t0)/1500,1),v=end*(1-Math.pow(1-p,3));
+        el.textContent=v.toLocaleString('en-US',{minimumFractionDigits:dec,maximumFractionDigits:dec});if(p<1)requestAnimationFrame(step)}
+      requestAnimationFrame(step);
+    })},{threshold:.6});
+    document.querySelectorAll('[data-count]').forEach(function(e){cio.observe(e)});
+  }
+
+  var hero=document.querySelector('.hero');
+  if(hero&&!reduce){hero.addEventListener('pointermove',function(e){var r=hero.getBoundingClientRect();hero.style.setProperty('--mx',(e.clientX-r.left)+'px');hero.style.setProperty('--my',(e.clientY-r.top)+'px')})}
+})();
+</script>
+</body>
+</html>

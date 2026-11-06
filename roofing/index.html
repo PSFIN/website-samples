@@ -1,0 +1,608 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+<title>Coralstone Roofing &amp; Remodeling</title>
+<meta name="claude:viewport-fit-sides" content="cover">
+<meta name="description" content="Demo website for a fictional South Florida roofing and remodeling contractor.">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Archivo:wdth,wght@62..125,600;62..125,800;62..125,900&family=IBM+Plex+Sans:wght@400;500;600&family=IBM+Plex+Mono:wght@500&display=swap">
+<style>
+/* Layout: job-site spec sheet; slate header bands, cool concrete ground, safety amber for actions only, mono for codes and ratings */
+:root{
+  --slate:#1b2a35; --slate-2:#26394a; --concrete:#eef0f1; --white:#ffffff; --line:#d3d9de;
+  --amber:#f2a516; --amber-deep:#c98100; --ink:#16212a; --ink-soft:#56636e; --clay:#c4673f;
+  --display:"Archivo", "Arial Narrow", Arial, sans-serif;
+  --body:"IBM Plex Sans", "Segoe UI", system-ui, sans-serif;
+  --mono:"IBM Plex Mono", ui-monospace, Menlo, monospace;
+  color-scheme:light;
+}
+*{box-sizing:border-box}
+[hidden]{display:none!important}
+html{scroll-behavior:smooth}
+@media (prefers-reduced-motion:reduce){html{scroll-behavior:auto}*{transition:none!important;animation:none!important}}
+body{margin:0;background:var(--concrete);color:var(--ink);font:16px/1.6 var(--body);padding-bottom:76px}
+@media (min-width:860px){body{padding-bottom:0}}
+a{color:inherit}
+svg{max-width:100%}
+h1,h2,h3{margin:0;line-height:1;text-wrap:balance;font-family:var(--display)}
+h1,h2{font-weight:900;font-stretch:75%;text-transform:uppercase;letter-spacing:-.005em}
+h2{font-size:clamp(2.2rem,5.4vw,3.6rem)}
+h3{font-size:1.25rem;font-weight:800;font-stretch:90%}
+p{margin:0}
+.wrap{max-width:1180px;margin:0 auto;padding-left:max(16px,env(safe-area-inset-left,0px));padding-right:max(16px,env(safe-area-inset-right,0px))}
+section{padding-block:clamp(56px,8vw,100px)}
+.code{font-family:var(--mono);font-size:.78rem;letter-spacing:.06em;text-transform:uppercase;color:var(--amber-deep)}
+.lede{color:var(--ink-soft);font-size:1.08rem;max-width:58ch}
+.sec-head{display:grid;gap:12px;margin-bottom:36px}
+:focus-visible{outline:3px solid var(--amber);outline-offset:3px}
+
+.demo{background:var(--amber);color:var(--ink);font-size:.82rem;text-align:center}
+.demo .wrap{padding-block:7px}
+
+body::before{content:"";position:fixed;inset:0 0 auto;height:env(safe-area-inset-top,0px);z-index:10;background:var(--slate)}
+header.top{position:sticky;top:env(safe-area-inset-top,0px);z-index:20;background:var(--slate);color:#fff}
+header.top .wrap{display:flex;align-items:center;gap:16px;padding-block:12px}
+.logo{display:flex;align-items:center;gap:10px;text-decoration:none;font-family:var(--display);font-weight:900;font-stretch:80%;font-size:1.35rem;text-transform:uppercase;line-height:1}
+.logo small{display:block;font-family:var(--mono);font-weight:500;font-size:.62rem;letter-spacing:.12em;color:#9fb1bf;margin-top:3px}
+nav.main{display:none;gap:24px;margin-left:auto;font-size:.92rem}
+nav.main a{text-decoration:none;color:#c6d2db}
+nav.main a:hover{color:#fff}
+@media (min-width:980px){nav.main{display:flex}}
+.lang{display:inline-flex;border:1px solid rgba(255,255,255,.25);padding:3px;margin-left:auto}
+@media (min-width:980px){.lang{margin-left:0}}
+.lang button{border:0;background:none;color:#c6d2db;font:600 .8rem var(--mono);padding:5px 10px;cursor:pointer}
+.lang button[aria-pressed="true"]{background:#fff;color:var(--slate)}
+.btn{display:inline-flex;align-items:center;justify-content:center;gap:8px;padding:14px 22px;font:600 1rem var(--body);text-decoration:none;border:2px solid transparent;cursor:pointer;border-radius:2px;transition:background .15s}
+.btn-amber{background:var(--amber);color:var(--ink)}
+.btn-amber:hover{background:#ffb93a}
+.btn-line{border-color:currentColor;background:transparent}
+.btn-wa{background:#1f9d55;color:#fff}
+.hdr-cta{display:none}
+@media (min-width:640px){.hdr-cta{display:inline-flex;padding:9px 16px;font-size:.9rem}}
+
+/* hero */
+.hero{background:var(--slate);color:#fff;padding-block:clamp(40px,6vw,80px) 0}
+.hero .wrap{display:grid;gap:36px;align-items:end}
+@media (min-width:920px){.hero .wrap{grid-template-columns:1fr 1.05fr}}
+.hero h1{font-size:clamp(2.9rem,8.4vw,5.6rem);line-height:.92}
+.hero h1 span{color:var(--amber)}
+.hero .lede{color:#b9c7d2;margin-top:20px}
+.cta-row{display:flex;flex-wrap:wrap;gap:12px;margin-top:28px}
+.hero-copy{padding-bottom:clamp(40px,6vw,80px)}
+.hero .phone{margin-top:18px;color:#b9c7d2;font-size:.95rem}
+.hero .phone strong{color:#fff;font-family:var(--mono);font-size:1.05rem;user-select:all}
+.house-card{background:var(--slate-2);padding:16px 16px 0;position:relative}
+.house-card svg{display:block;width:100%;height:auto}
+.toggle{display:inline-flex;border:1px solid rgba(255,255,255,.3);margin-bottom:12px}
+.toggle button{border:0;background:none;color:#c6d2db;font:600 .8rem var(--mono);letter-spacing:.06em;text-transform:uppercase;padding:7px 14px;cursor:pointer}
+.toggle button[aria-pressed="true"]{background:var(--amber);color:var(--ink)}
+.proj .before,.proj .after{transition:opacity .7s}
+.proj[data-state="before"] .after,.proj[data-state="after"] .before{opacity:0}
+
+/* spec strip */
+.specs{background:var(--white);border-bottom:1px solid var(--line);padding-block:0}
+.specs .wrap{display:grid;grid-template-columns:repeat(2,minmax(0,1fr))}
+@media (min-width:820px){.specs .wrap{grid-template-columns:repeat(4,minmax(0,1fr))}}
+.spec{padding:22px 16px 22px 0;display:grid;gap:4px;border-bottom:1px solid var(--line)}
+@media (min-width:820px){.spec{border-bottom:0;border-right:1px solid var(--line);padding-left:20px}.spec:first-child{padding-left:0}.spec:last-child{border-right:0}}
+.spec b{font-family:var(--display);font-weight:900;font-stretch:75%;font-size:2rem;line-height:1;font-variant-numeric:tabular-nums}
+.spec>span{font-size:.88rem;color:var(--ink-soft)}
+
+/* services */
+.svc-grid{display:grid;gap:2px;grid-template-columns:repeat(auto-fill,minmax(min(100%,320px),1fr));background:var(--line);border:2px solid var(--line)}
+.svc{background:var(--white);padding:26px;display:grid;gap:10px;align-content:start}
+.svc .ico{color:var(--clay)}
+.svc p{color:var(--ink-soft);font-size:.96rem}
+.svc ul{margin:0;padding:0;list-style:none;display:flex;flex-wrap:wrap;gap:6px}
+.svc li{font-family:var(--mono);font-size:.72rem;letter-spacing:.04em;text-transform:uppercase;border:1px solid var(--line);padding:3px 8px;color:var(--ink-soft)}
+
+/* process */
+.process{background:var(--slate);color:#fff}
+.process .lede{color:#b9c7d2}
+.process .code{color:var(--amber)}
+.steps{list-style:none;margin:0;padding:0;display:grid;gap:0;grid-template-columns:1fr;counter-reset:s}
+@media (min-width:900px){.steps{grid-template-columns:repeat(5,minmax(0,1fr))}}
+.steps li{counter-increment:s;padding:20px 18px 20px 0;border-top:3px solid var(--amber);display:grid;gap:8px;align-content:start}
+@media (min-width:900px){.steps li{padding-right:22px}}
+.steps li::before{content:counter(s,decimal-leading-zero);font-family:var(--mono);color:var(--amber);font-size:.9rem}
+.steps p{color:#b9c7d2;font-size:.94rem}
+
+/* projects */
+.proj-grid{display:grid;gap:22px;grid-template-columns:repeat(auto-fit,minmax(min(100%,320px),1fr))}
+.proj{background:var(--white);border:1px solid var(--line);display:grid}
+.proj .pic{position:relative;background:#cfe0ea}
+.proj .pic svg{display:block;width:100%;height:auto}
+.proj .toggle{position:absolute;top:10px;left:10px;margin:0;background:rgba(27,42,53,.88)}
+.proj .body{padding:18px 20px 22px;display:grid;gap:6px}
+.proj .body p{color:var(--ink-soft);font-size:.94rem}
+.proj .meta{font-family:var(--mono);font-size:.75rem;color:var(--ink-soft);text-transform:uppercase;letter-spacing:.04em}
+.note{margin-top:18px;font-size:.85rem;color:var(--ink-soft)}
+
+/* finance */
+.finance{padding-block:0}
+.finance .box{background:var(--amber);padding:clamp(24px,4vw,44px);display:grid;gap:18px;align-items:center}
+@media (min-width:820px){.finance .box{grid-template-columns:1fr auto}}
+.finance h2{font-size:clamp(1.8rem,4vw,2.8rem)}
+.finance small{display:block;margin-top:8px;font-size:.8rem;opacity:.8}
+.finance .btn{background:var(--slate);color:#fff}
+
+/* reviews */
+.sample-badge{justify-self:start;font-family:var(--mono);font-size:.72rem;letter-spacing:.08em;text-transform:uppercase;padding:4px 10px;border:1px dashed var(--ink-soft);color:var(--ink-soft)}
+.rev-grid{display:grid;gap:18px;grid-template-columns:repeat(auto-fit,minmax(min(100%,290px),1fr))}
+.rev{margin:0;background:var(--white);border:1px solid var(--line);padding:24px;display:grid;gap:12px;align-content:start}
+.stars{color:var(--amber-deep);letter-spacing:2px}
+.rev blockquote{margin:0}
+.rev figcaption{font-size:.88rem;color:var(--ink-soft)}
+.rev figcaption b{color:var(--ink)}
+.rev .job{font-family:var(--mono);font-size:.72rem;text-transform:uppercase;letter-spacing:.04em;color:var(--clay)}
+
+/* area */
+.area .wrap{display:grid;gap:34px;align-items:center}
+@media (min-width:900px){.area .wrap{grid-template-columns:1fr 1.1fr}}
+.counties{display:grid;gap:14px;margin-top:22px}
+.counties div{border-left:3px solid var(--amber);padding-left:14px}
+.counties b{display:block;font-family:var(--display);font-weight:800;font-size:1.1rem}
+.counties span{color:var(--ink-soft);font-size:.93rem}
+.map{position:relative;border:1px solid var(--line);background:#dfe8ee}
+.map svg{display:block;width:100%;height:auto}
+.map-note{position:absolute;left:12px;right:12px;bottom:12px;background:rgba(255,255,255,.95);padding:10px 12px;font-size:.85rem;display:flex;flex-wrap:wrap;gap:8px;justify-content:space-between}
+.map-note a{font-weight:600;color:var(--slate)}
+
+/* estimate */
+.estimate{background:var(--slate);color:#fff}
+.estimate .lede{color:#b9c7d2}
+.estimate .code{color:var(--amber)}
+.estimate .wrap{display:grid;gap:36px}
+@media (min-width:920px){.estimate .wrap{grid-template-columns:1fr 1.3fr}}
+.contact{display:grid;gap:12px;margin-top:24px}
+.contact .num{font-family:var(--mono);font-size:1.3rem;user-select:all}
+form{background:var(--white);color:var(--ink);padding:clamp(20px,3.5vw,32px);display:grid;gap:16px;grid-template-columns:1fr 1fr}
+form .full{grid-column:1/-1}
+@media (max-width:560px){form{grid-template-columns:1fr}}
+label{display:grid;gap:6px;font-size:.86rem;font-weight:600}
+input,select,textarea{font:inherit;font-weight:400;font-size:1rem;padding:12px 14px;border:1.5px solid var(--line);border-radius:2px;background:var(--concrete);color:var(--ink);width:100%;min-width:0}
+input:focus,select:focus,textarea:focus{outline:none;border-color:var(--slate);background:#fff}
+textarea{min-height:90px;resize:vertical}
+.check{display:flex;gap:10px;align-items:flex-start;font-weight:500}
+.check input{width:20px;height:20px;flex:none;margin-top:2px;accent-color:var(--slate)}
+.form-note{grid-column:1/-1;background:#fff1d4;padding:12px 14px;font-size:.92rem}
+.fine{grid-column:1/-1;font-size:.8rem;color:var(--ink-soft)}
+
+footer{background:#121d25;color:#9fb1bf;font-size:.9rem}
+footer .wrap{padding-block:34px;display:grid;gap:14px}
+@media (min-width:760px){footer .wrap{grid-template-columns:1fr auto;align-items:end}}
+footer .logo{color:#fff}
+
+.mbar{position:fixed;left:0;right:0;bottom:0;z-index:30;display:grid;grid-template-columns:1fr 1fr;gap:10px;background:var(--slate);padding-top:10px;padding-bottom:calc(10px + env(safe-area-inset-bottom,0px));padding-left:max(12px,env(safe-area-inset-left,0px));padding-right:max(12px,env(safe-area-inset-right,0px))}
+.mbar .btn{padding:12px 8px;font-size:.95rem}
+@media (min-width:860px){.mbar{display:none}}
+
+/* ---- motion layer ---- */
+@keyframes rise{from{opacity:0;transform:translateY(34px)}to{opacity:1;transform:none}}
+@keyframes marq{to{transform:translateX(-50%)}}
+@keyframes grow{to{transform:scaleX(1)}}
+@keyframes pulse{0%{box-shadow:0 0 0 0 var(--pulse,rgba(31,157,85,.5))}70%{box-shadow:0 0 0 16px transparent}100%{box-shadow:0 0 0 0 transparent}}
+@keyframes shine{to{background-position:200% center}}
+.progress{position:fixed;left:0;right:0;top:env(safe-area-inset-top,0px);height:3px;background:var(--amber);transform-origin:0 50%;transform:scaleX(0);z-index:60;pointer-events:none}
+@supports (animation-timeline:scroll()){.progress{animation:grow linear both;animation-timeline:scroll(root)}}
+@supports not (animation-timeline:scroll()){.progress{display:none}}
+.btn{position:relative;overflow:hidden;isolation:isolate}
+.btn::after{content:"";position:absolute;inset:0;background:linear-gradient(115deg,transparent 30%,rgba(255,255,255,.45) 50%,transparent 70%);transform:translateX(-130%);transition:transform .7s;z-index:-1;pointer-events:none}
+.btn:hover::after{transform:translateX(130%)}
+.marquee{overflow:hidden;white-space:nowrap;display:flex}
+.marquee .track{display:flex;flex:none;align-items:center;animation:marq 30s linear infinite}
+.marquee:hover .track{animation-play-state:paused}
+.mbar .btn-wa{--pulse:rgba(31,157,85,.55);animation:pulse 2.4s 2s infinite}
+@supports (animation-timeline:view()){
+  .sec-head,.svc,.steps li,.proj,.rev,.counties div,.estimate form,.area .map,.finance .box,.spec{animation:rise linear both;animation-timeline:view();animation-range:entry 0% entry 70%}
+}
+
+.hero{position:relative;overflow:hidden}
+.hero .wrap{position:relative;z-index:1}
+.hero h1>span{display:inline-block;animation:slam .8s cubic-bezier(.2,1.3,.4,1) both}
+.hero h1>span:nth-child(2){animation-delay:.18s}
+@keyframes slam{from{opacity:0;transform:translateY(-46px) scale(1.15)}to{opacity:1;transform:none}}
+.hero-copy>.lede,.hero .cta-row,.hero .phone{animation:rise .9s .45s cubic-bezier(.2,.7,.2,1) both}
+.hero .cta-row{animation-delay:.6s}.hero .phone{animation-delay:.72s}
+.house-card{animation:rise 1s .3s cubic-bezier(.2,.7,.2,1) both}
+.hero .btn-amber{--pulse:rgba(242,165,22,.6);animation:pulse 2.2s 1.6s infinite}
+.house-card .rain,.house-card .flash{position:absolute;left:16px;right:16px;bottom:0;top:58px;pointer-events:none;transition:opacity .6s}
+.house-card .rain{background:url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='40' height='60'%3E%3Cpath d='M12 0l-3 16M32 30l-3 16' stroke='rgba(200,225,255,.65)' stroke-width='1.6'/%3E%3C/svg%3E");background-size:40px 60px;animation:rain .5s linear infinite}
+@keyframes rain{to{background-position:0 60px}}
+.house-card .flash{background:#eaf3ff;opacity:0;animation:flash 4.6s infinite}
+@keyframes flash{0%,58%,100%{opacity:0}60%{opacity:.75}62%{opacity:.05}64%{opacity:.55}68%{opacity:0}}
+.house-card[data-state="after"] .rain,.house-card[data-state="after"] .flash{opacity:0!important}
+.sun{animation:sunp 3s ease-in-out infinite;transform-box:fill-box;transform-origin:center}
+@keyframes sunp{50%{transform:scale(1.18)}}
+.wind{position:absolute;inset:0;pointer-events:none;z-index:0}
+.wind span{position:absolute;left:-220px;height:2px;width:180px;border-radius:2px;background:linear-gradient(90deg,transparent,rgba(255,255,255,.3),transparent);animation:wind linear infinite}
+@keyframes wind{to{transform:translateX(2000px)}}
+.marquee.hazard{position:relative;background:var(--amber);color:var(--ink);font-family:var(--display);font-weight:900;font-stretch:75%;text-transform:uppercase;font-size:clamp(1.4rem,3.2vw,2.2rem);padding-block:20px}
+.marquee.hazard::before,.marquee.hazard::after{content:"";position:absolute;left:0;right:0;height:8px;background:repeating-linear-gradient(-45deg,var(--ink) 0 10px,var(--amber) 10px 20px)}
+.marquee.hazard::before{top:0}.marquee.hazard::after{bottom:0}
+.marquee.hazard .track span{padding-inline:22px}
+.marquee.hazard .track i{font-style:normal}
+.svc{position:relative}
+.svc::after{content:"";position:absolute;left:0;bottom:0;height:4px;width:100%;background:var(--amber);transform:scaleX(0);transform-origin:left;transition:transform .45s cubic-bezier(.2,.7,.2,1)}
+.svc:hover::after{transform:scaleX(1)}
+.svc .ico{transition:rotate .4s,scale .4s}.svc:hover .ico{rotate:-8deg;scale:1.18}
+.proj{transition:translate .35s,box-shadow .35s}.proj-grid .proj:hover{translate:0 -6px;box-shadow:0 26px 44px -24px rgba(27,42,53,.55)}
+.steps li{transition:translate .3s}.steps li:hover{translate:0 -4px}
+.rev{transition:translate .35s}.rev:hover{translate:0 -6px}
+</style>
+</head>
+<body>
+<div class="progress" aria-hidden="true"></div>
+
+<div class="demo"><div class="wrap"><b data-es="Sitio de muestra">Sample website</b> · <span data-es="Negocio ficticio creado para mostrar cómo podría verse su sitio web.">Fictional business, built to show what your website could look like.</span></div></div>
+
+<header class="top">
+  <div class="wrap">
+    <a class="logo" href="#top">
+      <svg width="34" height="34" viewBox="0 0 40 40" aria-hidden="true"><path d="M4 22L20 8l16 14" stroke="#f2a516" stroke-width="5" fill="none" stroke-linejoin="round"/><path d="M10 22v12h20V22" stroke="#fff" stroke-width="4" fill="none"/></svg>
+      <span>Coralstone<small data-es="Techos y remodelación">Roofing &amp; Remodeling</small></span>
+    </a>
+    <nav class="main" aria-label="Main">
+      <a href="#services" data-es="Servicios">Services</a>
+      <a href="#process" data-es="Proceso">Process</a>
+      <a href="#projects" data-es="Proyectos">Projects</a>
+      <a href="#area" data-es="Zona">Service area</a>
+    </nav>
+    <div class="lang" role="group" aria-label="Language">
+      <button type="button" data-lang="en" aria-pressed="true">EN</button>
+      <button type="button" data-lang="es" aria-pressed="false">ES</button>
+    </div>
+    <a class="btn btn-amber hdr-cta" href="#estimate" data-es="Estimado gratis">Free estimate</a>
+  </div>
+</header>
+
+<main id="top">
+<section class="hero">
+  <div class="wind" aria-hidden="true"><span style="top:46%;animation-duration:6.8s;animation-delay:-2.4s"></span><span style="top:11%;animation-duration:3.8s;animation-delay:-3.2s"></span><span style="top:51%;animation-duration:5.5s;animation-delay:-5.5s"></span><span style="top:32%;animation-duration:3.6s;animation-delay:-2.6s"></span><span style="top:13%;animation-duration:4.3s;animation-delay:-3.3s"></span><span style="top:12%;animation-duration:6.4s;animation-delay:-0.7s"></span><span style="top:33%;animation-duration:5.7s;animation-delay:-3.5s"></span><span style="top:12%;animation-duration:5.5s;animation-delay:-2.4s"></span></div>
+  <div class="wrap">
+    <div class="hero-copy">
+      <p class="code" style="color:var(--amber)" data-es="Contratista con licencia · Lic. CCC0000000 (ejemplo)">Licensed contractor · Lic. CCC0000000 (sample)</p>
+      <h1 style="margin-top:16px"><span data-es="Techos hechos">Roofs built</span> <span style="color:#fff" data-es="para la temporada de huracanes.">for hurricane season.</span></h1>
+      <p class="lede" data-es="Reemplazo de techos de teja, shingle, metal y planos, además de remodelación de cocinas y baños. Nosotros sacamos los permisos y coordinamos las inspecciones del condado.">Tile, shingle, metal and flat roof replacement, plus kitchen and bath remodels. We pull the permits and handle the county inspections.</p>
+      <div class="cta-row">
+        <a class="btn btn-amber" href="#estimate" data-es="Inspección de techo gratis">Book a free roof inspection</a>
+        <a class="btn btn-wa" href="https://wa.me/13055550129" target="_blank" rel="noopener" data-es="Fotos por WhatsApp">Send photos on WhatsApp</a>
+      </div>
+      <p class="phone"><span data-es="Llame:">Call:</span> <strong>(305) 555-0129</strong></p>
+    </div>
+    <div class="house-card proj" data-state="after">
+      <div class="toggle" role="group" aria-label="Before or after">
+        <button type="button" data-show="before" aria-pressed="false" data-es="Antes">Before</button>
+        <button type="button" data-show="after" aria-pressed="true" data-es="Después">After</button>
+      </div>
+      <svg viewBox="0 0 520 300" role="img" aria-label="Illustration of a house with an old roof and a new tile roof">
+        <defs><clipPath id="hr"><polygon points="70,150 260,48 450,150"/></clipPath></defs>
+        <rect width="520" height="300" fill="#2f4658"/>
+        <circle class="sun" cx="440" cy="54" r="22" fill="#f6d27a" opacity=".85"/>
+        <rect y="262" width="520" height="38" fill="#4c6b4e"/>
+        <rect x="100" y="148" width="320" height="116" fill="#e7e2d6"/>
+        <rect x="236" y="190" width="48" height="74" fill="#5b4636"/>
+        <rect x="128" y="180" width="70" height="50" fill="#9ec3d6" stroke="#fff" stroke-width="5"/>
+        <rect x="322" y="180" width="70" height="50" fill="#9ec3d6" stroke="#fff" stroke-width="5"/>
+        <g class="before">
+          <g fill="#4b5c69"><ellipse cx="120" cy="36" rx="74" ry="22"/><ellipse cx="176" cy="26" rx="52" ry="20"/><ellipse cx="420" cy="44" rx="90" ry="26"/><ellipse cx="350" cy="30" rx="50" ry="18"/></g>
+          <polygon points="70,150 260,48 450,150" fill="#7d7a73"/>
+          <g clip-path="url(#hr)" stroke="#5f5c56" stroke-width="3"><path d="M60 70h400M60 90h400M60 110h400M60 130h400"/></g>
+          <polygon points="210,92 280,92 296,124 196,124" fill="#3d7fc1" opacity=".9"/>
+          <g fill="#4a4741"><rect x="140" y="128" width="22" height="10"/><rect x="330" y="112" width="18" height="10"/><rect x="300" y="78" width="16" height="9"/></g>
+          <path d="M100 150v40" stroke="#6d5a3e" stroke-width="5" opacity=".6"/>
+        </g>
+        <g class="after">
+          <polygon points="70,150 260,48 450,150" fill="#c4673f"/>
+          <g clip-path="url(#hr)" fill="none" stroke="#9c4a28" stroke-width="3">
+            <path d="M60 66h400M60 84h400M60 102h400M60 120h400M60 138h400"/>
+            <path d="M60 66h400M60 84h400M60 102h400M60 120h400M60 138h400" stroke="#e08a5c" stroke-width="7" stroke-dasharray="1 15" stroke-linecap="round" transform="translate(0,-6)"/>
+          </g>
+          <path d="M70 150L260 48 450 150" stroke="#8a3f20" stroke-width="7" fill="none" stroke-linejoin="round"/>
+        </g>
+      </svg>
+      <div class="rain" aria-hidden="true"></div><div class="flash" aria-hidden="true"></div>
+    </div>
+  </div>
+</section>
+
+<section class="specs" aria-label="Key facts">
+  <div class="wrap">
+    <div class="spec"><b><span data-count="175">175</span> mph</b><span data-es="Sistemas aprobados para viento (ejemplo)">Wind-rated roof systems (sample)</span></div>
+    <div class="spec"><b>NOA</b><span data-es="Productos aprobados por Miami-Dade">Miami-Dade approved products</span></div>
+    <div class="spec"><b>HVHZ</b><span data-es="Construido según el Código de la Florida">Built to Florida Building Code</span></div>
+    <div class="spec"><b data-es="10 años">10 yrs</b><span data-es="Garantía de mano de obra (ejemplo)">Workmanship warranty (sample)</span></div>
+  </div>
+</section>
+
+<div class="marquee hazard" aria-hidden="true"><div class="track"><span data-es="Inspecciones gratis">Free inspections</span><i>▲</i><span data-es="Permisos incluidos">Permits handled</span><i>▲</i><span data-es="Productos NOA de Miami-Dade">Miami-Dade NOA products</span><i>▲</i><span data-es="Reclamos de seguro">Insurance claims</span><i>▲</i><span data-es="Lona de emergencia 24/7">24/7 emergency tarping</span><i>▲</i><span data-es="Inspecciones gratis">Free inspections</span><i>▲</i><span data-es="Permisos incluidos">Permits handled</span><i>▲</i><span data-es="Productos NOA de Miami-Dade">Miami-Dade NOA products</span><i>▲</i><span data-es="Reclamos de seguro">Insurance claims</span><i>▲</i><span data-es="Lona de emergencia 24/7">24/7 emergency tarping</span><i>▲</i></div></div>
+
+<section id="services">
+  <div class="wrap">
+    <div class="sec-head">
+      <p class="code" data-es="Servicios">Services</p>
+      <h2 data-es="Desde el techo hasta la cocina">From the roof deck to the kitchen</h2>
+    </div>
+    <div class="svc-grid">
+      <article class="svc">
+        <svg class="ico" width="32" height="32" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" aria-hidden="true"><path d="M2 12L12 4l10 8M5 10v10h14V10"/></svg>
+        <h3 data-es="Reemplazo de techo">Roof replacement</h3>
+        <p data-es="Techo completo nuevo con permiso, desde el deck hasta el último caballete.">Full tear-off and re-roof with permit, from the deck up to the ridge.</p>
+        <ul><li data-es="Teja">Tile</li><li>Shingle</li><li data-es="Metal">Metal</li><li data-es="Plano / TPO">Flat / TPO</li></ul>
+      </article>
+      <article class="svc">
+        <svg class="ico" width="32" height="32" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" aria-hidden="true"><path d="M12 3s5 6 5 10a5 5 0 0 1-10 0c0-4 5-10 5-10z"/></svg>
+        <h3 data-es="Reparación y filtraciones">Repairs &amp; leaks</h3>
+        <p data-es="Encontramos la filtración, reparamos y le damos fotos del antes y después.">We find the leak, fix it, and send you before and after photos.</p>
+        <ul><li data-es="Emergencia 24/7">24/7 emergency</li><li data-es="Lona">Tarping</li></ul>
+      </article>
+      <article class="svc">
+        <svg class="ico" width="32" height="32" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" aria-hidden="true"><rect x="3" y="3" width="18" height="18"/><path d="M3 9h18M9 21V9"/></svg>
+        <h3 data-es="Inspección de mitigación de viento">Wind mitigation inspection</h3>
+        <p data-es="El informe que muchas aseguradoras usan para bajar el costo de su póliza.">The report many insurers use to lower your premium.</p>
+        <ul><li data-es="Informe en 48 h">48 h report</li></ul>
+      </article>
+      <article class="svc">
+        <svg class="ico" width="32" height="32" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" aria-hidden="true"><rect x="3" y="10" width="18" height="10"/><path d="M3 14h18M8 10V4h8v6"/></svg>
+        <h3 data-es="Remodelación de cocina">Kitchen remodels</h3>
+        <p data-es="Gabinetes, topes de cuarzo, isla, iluminación y plomería en un solo contrato.">Cabinets, quartz counters, island, lighting and plumbing under one contract.</p>
+        <ul><li data-es="Diseño 3D">3D design</li><li data-es="4–6 semanas">4–6 weeks</li></ul>
+      </article>
+      <article class="svc">
+        <svg class="ico" width="32" height="32" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" aria-hidden="true"><path d="M4 12h16v3a5 5 0 0 1-5 5H9a5 5 0 0 1-5-5zM6 12V5a2 2 0 0 1 4 0"/></svg>
+        <h3 data-es="Remodelación de baño">Bathroom remodels</h3>
+        <p data-es="Duchas sin bordes, losa de gran formato y vanidades flotantes.">Curbless showers, large-format tile and floating vanities.</p>
+        <ul><li data-es="2–3 semanas">2–3 weeks</li></ul>
+      </article>
+      <article class="svc">
+        <svg class="ico" width="32" height="32" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" aria-hidden="true"><rect x="4" y="3" width="16" height="18"/><path d="M12 3v18M4 12h16"/></svg>
+        <h3 data-es="Ventanas y puertas de impacto">Impact windows &amp; doors</h3>
+        <p data-es="Olvídese de las tormenteras. Menos ruido y menos calor.">Retire the hurricane shutters. Less noise, lower power bills.</p>
+        <ul><li data-es="Aprobado NOA">NOA approved</li></ul>
+      </article>
+    </div>
+  </div>
+</section>
+
+<section id="process" class="process">
+  <div class="wrap">
+    <div class="sec-head">
+      <p class="code" data-es="Proceso">Process</p>
+      <h2 data-es="Cómo se hace un techo nuevo">How a new roof gets done</h2>
+      <p class="lede" data-es="Un gerente de proyecto le avisa en cada paso, por texto o WhatsApp.">One project manager keeps you posted at every step, by text or WhatsApp.</p>
+    </div>
+    <ol class="steps">
+      <li><h3 data-es="Inspección">Inspection</h3><p data-es="Revisamos el techo y el ático con fotos y medidas de dron.">We check the roof and attic with drone photos and measurements.</p></li>
+      <li><h3 data-es="Estimado">Estimate</h3><p data-es="Precio escrito por línea, con opciones de material.">Line-item written price with material options.</p></li>
+      <li><h3 data-es="Permiso">Permit</h3><p data-es="Sacamos el permiso con la ciudad o el condado.">We file the permit with your city or the county.</p></li>
+      <li><h3 data-es="Construcción">Build</h3><p data-es="La mayoría de los techos se terminan en 3 a 7 días.">Most roofs finish in 3 to 7 working days.</p></li>
+      <li><h3 data-es="Inspección final">Final inspection</h3><p data-es="El inspector aprueba y usted recibe la garantía por escrito.">The inspector signs off and you get the warranty in writing.</p></li>
+    </ol>
+  </div>
+</section>
+
+<section id="projects">
+  <div class="wrap">
+    <div class="sec-head">
+      <p class="code" data-es="Proyectos recientes">Recent projects</p>
+      <h2 data-es="Antes y después">Before &amp; after</h2>
+    </div>
+    <div class="proj-grid">
+      <article class="proj" data-state="after">
+        <div class="pic">
+          <svg viewBox="0 0 400 250" role="img" aria-label="Illustration of a barrel tile roof replacement">
+            <defs><clipPath id="p1"><polygon points="50,130 200,46 350,130"/></clipPath></defs>
+            <rect width="400" height="250" fill="#cfe0ea"/><rect y="220" width="400" height="30" fill="#7fa37e"/>
+            <rect x="76" y="128" width="248" height="94" fill="#f3efe6"/><rect x="180" y="160" width="40" height="62" fill="#6b4f3a"/>
+            <rect x="100" y="152" width="54" height="40" fill="#a9cbe0" stroke="#fff" stroke-width="4"/><rect x="246" y="152" width="54" height="40" fill="#a9cbe0" stroke="#fff" stroke-width="4"/>
+            <g class="before"><polygon points="50,130 200,46 350,130" fill="#a39a8c"/><g clip-path="url(#p1)" stroke="#857c6f" stroke-width="3"><path d="M40 66h320M40 84h320M40 102h320M40 120h320"/></g><g fill="#5d564c"><rect x="120" y="108" width="20" height="9"/><rect x="230" y="90" width="16" height="9"/></g><path d="M160 80l30 30M250 100l20 22" stroke="#4a443c" stroke-width="3"/></g>
+            <g class="after"><polygon points="50,130 200,46 350,130" fill="#c4673f"/><g clip-path="url(#p1)" fill="none"><path d="M40 64h320M40 80h320M40 96h320M40 112h320M40 128h320" stroke="#9c4a28" stroke-width="3"/><path d="M40 60h320M40 76h320M40 92h320M40 108h320M40 124h320" stroke="#e08a5c" stroke-width="6" stroke-dasharray="1 13" stroke-linecap="round"/></g><path d="M50 130L200 46l150 84" stroke="#8a3f20" stroke-width="6" fill="none"/></g>
+          </svg>
+          <div class="toggle" role="group" aria-label="Before or after"><button type="button" data-show="before" aria-pressed="false" data-es="Antes">Before</button><button type="button" data-show="after" aria-pressed="true" data-es="Después">After</button></div>
+        </div>
+        <div class="body"><p class="meta">Coral Gables · 2,400 ft² · <span data-es="5 días">5 days</span></p><h3 data-es="Teja de barril, reemplazo completo">Barrel tile, full replacement</h3><p data-es="Techo de 22 años con filtraciones. Teja nueva de concreto con subcapa autoadhesiva.">22-year-old roof with active leaks. New concrete tile over peel-and-stick underlayment.</p></div>
+      </article>
+      <article class="proj" data-state="after">
+        <div class="pic">
+          <svg viewBox="0 0 400 250" role="img" aria-label="Illustration of a standing seam metal roof">
+            <defs><clipPath id="p2"><polygon points="40,136 200,60 360,136"/></clipPath></defs>
+            <rect width="400" height="250" fill="#d6e4ec"/><rect y="220" width="400" height="30" fill="#87a983"/>
+            <rect x="70" y="134" width="260" height="88" fill="#dfe6e9"/><rect x="250" y="160" width="40" height="62" fill="#3b4a55"/>
+            <rect x="96" y="156" width="110" height="40" fill="#a9cbe0" stroke="#fff" stroke-width="4"/>
+            <g class="before"><polygon points="40,136 200,60 360,136" fill="#6f7377"/><g clip-path="url(#p2)" stroke="#585c60" stroke-width="3"><path d="M30 80h340M30 98h340M30 116h340"/></g><polygon points="230,92 290,92 300,118 222,118" fill="#3d7fc1"/><g fill="#45484b"><rect x="110" y="114" width="20" height="9"/></g></g>
+            <g class="after"><polygon points="40,136 200,60 360,136" fill="#3f5566"/><g clip-path="url(#p2)" stroke="#5f7a8e" stroke-width="3"><path d="M60 40v120M84 40v120M108 40v120M132 40v120M156 40v120M180 40v120M204 40v120M228 40v120M252 40v120M276 40v120M300 40v120M324 40v120M348 40v120"/></g><path d="M40 136L200 60l160 76" stroke="#2c3d4a" stroke-width="6" fill="none"/></g>
+          </svg>
+          <div class="toggle" role="group" aria-label="Before or after"><button type="button" data-show="before" aria-pressed="false" data-es="Antes">Before</button><button type="button" data-show="after" aria-pressed="true" data-es="Después">After</button></div>
+        </div>
+        <div class="body"><p class="meta">Homestead · 1,900 ft² · <span data-es="4 días">4 days</span></p><h3 data-es="De shingle a metal de junta alzada">Shingle to standing-seam metal</h3><p data-es="Daño de tormenta, reclamo de seguro coordinado con el ajustador.">Storm damage, insurance claim coordinated with the adjuster.</p></div>
+      </article>
+      <article class="proj" data-state="after">
+        <div class="pic">
+          <svg viewBox="0 0 400 250" role="img" aria-label="Illustration of a kitchen remodel">
+            <rect width="400" height="250" fill="#eceae4"/>
+            <g class="before"><rect width="400" height="250" fill="#e6dcc4"/><rect x="30" y="30" width="340" height="60" fill="#8a5a32"/><path d="M115 30v60M200 30v60M285 30v60" stroke="#6b4426" stroke-width="3"/><rect x="30" y="150" width="340" height="80" fill="#8a5a32"/><rect x="24" y="140" width="352" height="12" fill="#c9b892"/><path d="M115 152v78M200 152v78M285 152v78" stroke="#6b4426" stroke-width="3"/><rect x="0" y="230" width="400" height="20" fill="#b8a27a"/><rect x="230" y="100" width="60" height="40" fill="#cfc6b0"/></g>
+            <g class="after"><rect x="30" y="26" width="340" height="66" fill="#fbfbf9" stroke="#d9dcdc" stroke-width="2"/><path d="M115 26v66M200 26v66M285 26v66" stroke="#d9dcdc" stroke-width="2"/><g fill="#9aa3a8"><rect x="66" y="80" width="14" height="3"/><rect x="152" y="80" width="14" height="3"/><rect x="236" y="80" width="14" height="3"/><rect x="322" y="80" width="14" height="3"/></g><rect x="30" y="100" width="340" height="38" fill="#e3e8ea"/><path d="M30 113h340M30 126h340" stroke="#d1d8db"/><rect x="80" y="160" width="240" height="70" fill="#22394d"/><rect x="72" y="150" width="256" height="12" fill="#f4f4f1"/><g stroke="#f2a516" stroke-width="3"><path d="M200 0v40M300 0v40"/></g><circle cx="200" cy="46" r="10" fill="#f2a516"/><circle cx="300" cy="46" r="10" fill="#f2a516"/><rect x="0" y="230" width="400" height="20" fill="#cfc7b8"/></g>
+          </svg>
+          <div class="toggle" role="group" aria-label="Before or after"><button type="button" data-show="before" aria-pressed="false" data-es="Antes">Before</button><button type="button" data-show="after" aria-pressed="true" data-es="Después">After</button></div>
+        </div>
+        <div class="body"><p class="meta">Westchester · <span data-es="Cocina">Kitchen</span> · <span data-es="5 semanas">5 weeks</span></p><h3 data-es="Cocina abierta con isla">Open kitchen with island</h3><p data-es="Gabinetes shaker, tope de cuarzo e isla azul marino con asientos para cuatro.">Shaker cabinets, quartz counters and a navy island that seats four.</p></div>
+      </article>
+    </div>
+    <p class="note" data-es="Ilustraciones de ejemplo. Su sitio real mostrará fotos de sus propias obras.">Illustrations for this sample. Your real site shows photos of your own jobs.</p>
+  </div>
+</section>
+
+<section class="finance">
+  <div class="wrap">
+    <div class="box">
+      <div>
+        <h2 data-es="Techo nuevo desde $189 al mes">New roof from $189 a month</h2>
+        <p style="margin-top:10px;max-width:56ch" data-es="Financiamiento con aprobación en minutos y opciones sin intereses por 12 meses.">Financing with approval in minutes and 12-month same-as-cash options.</p>
+        <small data-es="Cifras de ejemplo para este sitio de muestra. Sujeto a aprobación de crédito.">Example figures for this sample site. Subject to credit approval.</small>
+      </div>
+      <a class="btn" href="#estimate" data-es="Ver mis opciones">See my options</a>
+    </div>
+  </div>
+</section>
+
+<section id="reviews">
+  <div class="wrap">
+    <div class="sec-head">
+      <span class="sample-badge" data-es="Reseñas de ejemplo">Sample reviews</span>
+      <h2 data-es="Dueños de casa que nos recomiendan">Homeowners who'd hire us again</h2>
+      <p class="lede" data-es="Texto de ejemplo. Su sitio real mostrará sus reseñas de Google.">Placeholder text. Your real site will show your actual Google reviews.</p>
+    </div>
+    <div class="rev-grid">
+      <figure class="rev"><span class="job" data-es="Techo de teja · Coral Gables">Tile roof · Coral Gables</span><div class="stars" aria-label="5 out of 5 stars">★★★★★</div><blockquote data-es="Nos explicaron el permiso paso a paso y limpiaron todos los días. El informe de viento bajó nuestro seguro.">They walked us through the permit and cleaned up every day. The wind mitigation report lowered our insurance.</blockquote><figcaption><b>Patricia L.</b></figcaption></figure>
+      <figure class="rev"><span class="job" data-es="Techo de metal · Homestead">Metal roof · Homestead</span><div class="stars" aria-label="5 out of 5 stars">★★★★★</div><blockquote data-es="Hablaron directamente con el ajustador del seguro. Techo terminado antes de la siguiente tormenta.">They dealt directly with the insurance adjuster. Roof was done before the next storm.</blockquote><figcaption><b>Roberto C.</b></figcaption></figure>
+      <figure class="rev"><span class="job" data-es="Cocina · Westchester">Kitchen · Westchester</span><div class="stars" aria-label="5 out of 5 stars">★★★★★</div><blockquote data-es="Terminaron la cocina en cinco semanas, como dijeron. El diseño 3D fue exactamente lo que recibimos.">Finished the kitchen in five weeks, like they said. The 3D design is exactly what we got.</blockquote><figcaption><b>Steph &amp; Omar K.</b></figcaption></figure>
+    </div>
+  </div>
+</section>
+
+<section id="area" class="area" style="padding-top:0">
+  <div class="wrap">
+    <div>
+      <p class="code" data-es="Zona de servicio">Service area</p>
+      <h2 style="margin-top:12px" data-es="Tres condados, un equipo">Three counties, one crew</h2>
+      <div class="counties">
+        <div><b>Miami-Dade</b><span>Miami · Coral Gables · Kendall · Homestead · Doral · Hialeah · Miami Beach</span></div>
+        <div><b>Broward</b><span>Fort Lauderdale · Hollywood · Pembroke Pines · Weston · Miramar</span></div>
+        <div><b>Palm Beach</b><span data-es="Boca Ratón y Delray Beach, solo techos">Boca Raton and Delray Beach, roofing only</span></div>
+      </div>
+    </div>
+    <div class="map">
+      <svg viewBox="0 0 600 420" role="img" aria-label="Illustrated map of the three-county service area">
+        <rect width="600" height="420" fill="#b9d3e1"/>
+        <path d="M0 0h430c-10 60-16 120-26 190s-24 130-48 230H0z" fill="#e8eeea"/>
+        <path d="M0 140h416M0 280h392" stroke="#1b2a35" stroke-width="2" stroke-dasharray="8 6"/>
+        <rect x="0" y="0" width="416" height="140" fill="#f2a516" opacity=".10"/>
+        <rect x="0" y="140" width="416" height="140" fill="#f2a516" opacity=".20"/>
+        <rect x="0" y="280" width="392" height="140" fill="#f2a516" opacity=".30"/>
+        <g font-family="IBM Plex Mono, monospace" font-size="15" font-weight="500" fill="#1b2a35">
+          <text x="24" y="40">PALM BEACH</text><text x="24" y="180">BROWARD</text><text x="24" y="320">MIAMI-DADE</text>
+        </g>
+        <g font-family="IBM Plex Sans, system-ui, sans-serif" font-size="13" font-weight="600" fill="#1b2a35">
+          <g transform="translate(360,90)"><circle r="5"/><text x="-80" y="5">Boca Raton</text></g>
+          <g transform="translate(350,210)"><circle r="5"/><text x="-112" y="5">Fort Lauderdale</text></g>
+          <g transform="translate(320,340)"><circle r="8" fill="#f2a516" stroke="#1b2a35" stroke-width="2"/><text x="-50" y="5">Miami</text></g>
+          <g transform="translate(220,395)"><circle r="5"/><text x="12" y="5">Homestead</text></g>
+        </g>
+        <text x="470" y="250" font-family="IBM Plex Mono, monospace" font-size="12" fill="#4f7187">ATLANTIC</text>
+      </svg>
+      <div class="map-note"><span data-es="Aquí va el mapa de Google en su sitio real">Live Google Map goes here on your real site</span><a href="https://www.google.com/maps/search/?api=1&amp;query=Miami-Dade+County%2C+FL" target="_blank" rel="noopener" data-es="Abrir en Google Maps">Open in Google Maps</a></div>
+    </div>
+  </div>
+</section>
+
+<section id="estimate" class="estimate">
+  <div class="wrap">
+    <div>
+      <p class="code" data-es="Estimado gratis">Free estimate</p>
+      <h2 style="margin-top:12px" data-es="Pida su inspección gratis">Get a free inspection</h2>
+      <p class="lede" style="margin-top:14px" data-es="Un inspector con licencia visita su casa en 48 horas. Sin compromiso.">A licensed inspector visits within 48 hours. No obligation.</p>
+      <div class="contact">
+        <span class="num">(305) 555-0129</span>
+        <div style="display:flex;flex-wrap:wrap;gap:10px">
+          <a class="btn btn-line" style="padding:9px 16px" href="tel:+13055550129" data-es="Llamar">Call</a>
+          <a class="btn btn-wa" style="padding:9px 16px" href="https://wa.me/13055550129" target="_blank" rel="noopener">WhatsApp</a>
+        </div>
+        <p style="color:#b9c7d2;font-size:.92rem" data-es="Lun–Sáb 7 a.m.–6 p.m. · Emergencias 24/7">Mon–Sat 7 a.m.–6 p.m. · Emergencies 24/7</p>
+      </div>
+    </div>
+    <form data-demo novalidate>
+      <label><span data-es="Nombre">Name</span><input id="e-name" name="name" autocomplete="name" placeholder="Patricia Lopez"></label>
+      <label><span data-es="Teléfono">Phone</span><input id="e-phone" name="phone" type="tel" autocomplete="tel" placeholder="(305) 555-0100"></label>
+      <label><span data-es="Tipo de proyecto">Project type</span>
+        <select id="e-type" name="type">
+          <option data-es="Techo nuevo">New roof</option>
+          <option data-es="Reparación / filtración">Repair / leak</option>
+          <option data-es="Mitigación de viento">Wind mitigation</option>
+          <option data-es="Cocina">Kitchen</option>
+          <option data-es="Baño">Bathroom</option>
+          <option data-es="Ventanas de impacto">Impact windows</option>
+        </select>
+      </label>
+      <label><span data-es="Edad del techo">Roof age</span>
+        <select id="e-age" name="age">
+          <option data-es="No sé">Not sure</option>
+          <option data-es="Menos de 10 años">Under 10 years</option>
+          <option data-es="10–15 años">10–15 years</option>
+          <option data-es="Más de 15 años">15+ years</option>
+        </select>
+      </label>
+      <label class="full"><span data-es="Dirección o código postal">Address or ZIP</span><input id="e-zip" name="zip" autocomplete="postal-code" placeholder="33134"></label>
+      <label class="check full"><input id="e-claim" type="checkbox" name="claim"><span data-es="Es un reclamo de seguro (huracán o tormenta)">This is an insurance claim (hurricane or storm)</span></label>
+      <label class="full"><span data-es="Detalles">Details</span><textarea id="e-details" name="details" data-es-ph="Ej.: filtración en la sala después de la última tormenta" placeholder="e.g. leak in the living room after the last storm"></textarea></label>
+      <button class="btn btn-amber full" type="submit" data-es="Pedir inspección gratis">Request free inspection</button>
+      <p class="form-note" role="status" hidden data-es="Este es un formulario de demostración, no se envió nada. En su sitio real, las solicitudes le llegan directo a su correo, CRM o WhatsApp.">This is a demo form, so nothing was sent. On your real site, requests go straight to your email, CRM or WhatsApp.</p>
+      <p class="fine" data-es="Formulario de demostración: no guarda ni envía datos.">Demo form: no data is stored or sent.</p>
+    </form>
+  </div>
+</section>
+</main>
+
+<footer>
+  <div class="wrap">
+    <div>
+      <a class="logo" href="#top"><span>Coralstone<small data-es="Techos y remodelación">Roofing &amp; Remodeling</small></span></a>
+      <p style="margin-top:10px" data-es="Negocio ficticio. Nombre, licencia, precios, reseñas y teléfono son ejemplos.">Fictional business. Name, license, prices, reviews and phone number are examples.</p>
+    </div>
+    <p>© 2026 Coralstone (sample)</p>
+  </div>
+</footer>
+
+<div class="mbar">
+  <a class="btn btn-amber" href="tel:+13055550129" data-es="Llamar">Call now</a>
+  <a class="btn btn-wa" href="https://wa.me/13055550129" target="_blank" rel="noopener">WhatsApp</a>
+</div>
+
+<script>
+(function(){
+  var tx=[].slice.call(document.querySelectorAll('[data-es]'));
+  tx.forEach(function(e){e.setAttribute('data-en',e.innerHTML)});
+  var ph=[].slice.call(document.querySelectorAll('[data-es-ph]'));
+  ph.forEach(function(e){e.setAttribute('data-en-ph',e.placeholder)});
+  function setLang(l){
+    document.documentElement.lang=l;
+    tx.forEach(function(e){e.innerHTML=e.getAttribute(l==='es'?'data-es':'data-en')});
+    ph.forEach(function(e){e.placeholder=e.getAttribute(l==='es'?'data-es-ph':'data-en-ph')});
+    document.querySelectorAll('[data-lang]').forEach(function(b){b.setAttribute('aria-pressed',String(b.getAttribute('data-lang')===l))});
+    try{localStorage.setItem('demo-lang',l)}catch(err){}
+  }
+  document.querySelectorAll('[data-lang]').forEach(function(b){b.addEventListener('click',function(){setLang(b.getAttribute('data-lang'))})});
+  var saved='en';try{saved=localStorage.getItem('demo-lang')||'en'}catch(err){}
+  if(saved==='es')setLang('es');
+  document.querySelectorAll('.proj').forEach(function(p){
+    p.querySelectorAll('[data-show]').forEach(function(b){b.addEventListener('click',function(){
+      p.setAttribute('data-state',b.getAttribute('data-show'));
+      p.querySelectorAll('[data-show]').forEach(function(o){o.setAttribute('aria-pressed',String(o===b))});
+    })});
+  });
+  document.querySelectorAll('form[data-demo]').forEach(function(f){
+    f.addEventListener('submit',function(e){e.preventDefault();var n=f.querySelector('.form-note');n.hidden=false;n.setAttribute('tabindex','-1');n.focus()});
+  });
+
+  var reduce=window.matchMedia&&matchMedia('(prefers-reduced-motion: reduce)').matches;
+  if(!reduce&&'IntersectionObserver' in window){
+    var cio=new IntersectionObserver(function(es){es.forEach(function(en){
+      if(!en.isIntersecting)return;cio.unobserve(en.target);
+      var el=en.target,end=parseFloat(el.getAttribute('data-count')),dec=+(el.getAttribute('data-dec')||0),t0=null;
+      function step(t){t0=t0||t;var p=Math.min((t-t0)/1500,1),v=end*(1-Math.pow(1-p,3));
+        el.textContent=v.toLocaleString('en-US',{minimumFractionDigits:dec,maximumFractionDigits:dec});if(p<1)requestAnimationFrame(step)}
+      requestAnimationFrame(step);
+    })},{threshold:.6});
+    document.querySelectorAll('[data-count]').forEach(function(e){cio.observe(e)});
+  }
+
+  var hc=document.querySelector('.house-card');
+  if(hc&&!reduce){var auto=setInterval(function(){var n=hc.getAttribute('data-state')==='after'?'before':'after';hc.setAttribute('data-state',n);
+    hc.querySelectorAll('[data-show]').forEach(function(o){o.setAttribute('aria-pressed',String(o.getAttribute('data-show')===n))})},3400);
+    hc.addEventListener('click',function(){clearInterval(auto)});}
+})();
+</script>
+</body>
+</html>
